@@ -27,230 +27,49 @@ loadSprite("pipe-top-left", "./sprites/pipe-top-left.png");
 loadSprite("pipe-top-right", "./sprites/pipe-top-right.png");
 loadSprite("pipe-bottom-left", "./sprites/pipe-bottom-left.png");
 loadSprite("pipe-bottom-right", "./sprites/pipe-bottom-right.png");
-loadSprite(
-  "wizard",
-  "./sprites/BlueWizard/2BlueWizardIdle/Chara - BlueIdle00000.png"
-);
-loadSprite(
-  "run-0",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00000.png"
-);
-loadSprite(
-  "run-1",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00001.png"
-);
-loadSprite(
-  "run-2",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00002.png"
-);
-loadSprite(
-  "run-3",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00003.png"
-);
-loadSprite(
-  "run-4",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00004.png"
-);
-loadSprite(
-  "run-5",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00005.png"
-);
-loadSprite(
-  "run-6",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00006.png"
-);
-loadSprite(
-  "run-7",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00007.png"
-);
-loadSprite(
-  "run-8",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00008.png"
-);
-loadSprite(
-  "run-9",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00009.png"
-);
-loadSprite(
-  "run-10",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00010.png"
-);
-loadSprite(
-  "run-11",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00011.png"
-);
-loadSprite(
-  "run-12",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00012.png"
-);
-loadSprite(
-  "run-13",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00013.png"
-);
-loadSprite(
-  "run-14",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00014.png"
-);
-loadSprite(
-  "run-15",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/Dash2/DashBlue_00015.png"
-);
-
-loadSprite(
-  "walk-0",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00000.png"
-);
-loadSprite(
-  "walk-1",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00001.png"
-);
-loadSprite(
-  "walk-2",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00002.png"
-);
-loadSprite(
-  "walk-3",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00003.png"
-);
-loadSprite(
-  "walk-4",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00004.png"
-);
-loadSprite(
-  "walk-5",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00005.png"
-);
-loadSprite(
-  "walk-6",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00006.png"
-);
-loadSprite(
-  "walk-7",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00007.png"
-);
-loadSprite(
-  "walk-8",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00008.png"
-);
-loadSprite(
-  "walk-9",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00009.png"
-);
-loadSprite(
-  "walk-10",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00010.png"
-);
-loadSprite(
-  "walk-11",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00011.png"
-);
-loadSprite(
-  "walk-12",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00012.png"
-);
-loadSprite(
-  "walk-13",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00013.png"
-);
-loadSprite(
-  "walk-14",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00014.png"
-);
-loadSprite(
-  "walk-15",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00015.png"
-);
-loadSprite(
-  "walk-16",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00016.png"
-);
-loadSprite(
-  "walk-17",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00017.png"
-);
-loadSprite(
-  "walk-18",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00018.png"
-);
-loadSprite(
-  "walk-19",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00019.png"
-);
-loadSprite(
-  "walk-20",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00020.png"
-);
-
-loadSprite(
-  "jump-0",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00000.png"
-);
-loadSprite(
-  "jump-1",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00001.png"
-);
-loadSprite(
-  "jump-2",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00002.png"
-);
-loadSprite(
-  "jump-3",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00003.png"
-);
-loadSprite(
-  "jump-4",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00004.png"
-);
-loadSprite(
-  "jump-5",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00005.png"
-);
-loadSprite(
-  "jump-6",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00006.png"
-);
-loadSprite(
-  "jump-7",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00007.png"
-);
-loadSprite(
-  "jump-8",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00008.png"
-);
-loadSprite(
-  "jump-9",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00009.png"
-);
-loadSprite(
-  "jump-10",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00010.png"
-);
-loadSprite(
-  "jump-11",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00011.png"
-);
-loadSprite(
-  "jump-12",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00012.png"
-);
-loadSprite(
-  "jump-13",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00013.png"
-);
-loadSprite(
-  "jump-14",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00014.png"
-);
-loadSprite(
-  "jump-15",
-  "/Users/natasakaldi/Desktop/Kaboom/music/www/sprites/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00015.png"
-);
+loadSprite("Knight", "./sprites/Idle.png", {
+  sliceX: 4,
+  sliceY: 1,
+  anims: { "idle-anim": { from: 0, to: 3, loop: true } },
+});
+loadSprite("Attack", "./sprites/Attack1.png", {
+  sliceX: 6,
+  sliceY: 1,
+  anims: { "idle-anim": { from: 0, to: 5, loop: true } },
+});
+loadSprite("Fall", "./sprites/Fall.png", {
+  sliceX: 3,
+  sliceY: 1,
+  anims: { "idle-anim": { from: 0, to: 2, loop: true } },
+});
+loadSprite("Jump", "./sprites/Jump.gif", {
+  sliceX: 6,
+  sliceY: 1,
+  anims: { "idle-anim": { from: 0, to: 5, loop: true } },
+});
+loadSprite("Run", "./sprites/Dashing.png", {
+  sliceX: 4,
+  sliceY: 1,
+  anims: { "idle-anim": { from: 0, to: 3, loop: true } },
+});
+loadSprite("Walk", "./sprites/Walking.png", {
+  sliceX: 7,
+  sliceY: 1,
+  anims: { "idle-anim": { from: 0, to: 6, loop: true } },
+});
+loadSprite("Landing", "./sprites/Landing.png", {
+  sliceX: 4,
+  sliceY: 1,
+  anims: { "idle-anim": { from: 0, to: 3, loop: true } },
+});
 
 loadSprite("blue-block", "./sprites/blueblock.png");
 loadSprite("blue-brick", "./sprites/bluebrick.png");
 loadSprite("blue-steel", "./sprites/bluesteel.png");
 loadSprite("blue-evil-shroom", "./sprites/bluemushroom.png");
 loadSprite("blue-surprise", "./sprites/bluesurprise.png");
+
+gravity(1000);
 
 scene("game", ({ level, score }) => {
   layers(["bg", "obj", "ui"], "obj");
@@ -361,7 +180,7 @@ scene("game", ({ level, score }) => {
   }
 
   const playerAnimations = {
-    idle: animation(0.2, "wizard"),
+    idle: animation(0.2, ""),
     jump: animation(
       0.2,
       "jump-0",
@@ -427,14 +246,17 @@ scene("game", ({ level, score }) => {
   };
 
   const player = add([
-    sprite(player.animations.idle),
+    sprite("Knight"),
     solid(),
     pos(30, 0),
     body(),
     big(),
     origin("bot"),
     scale(0.1),
+    area({ shape: new Rect(vec2(0), 32, 32), offset: vec2(0, 32) }),
   ]);
+
+  player.play("idle-anim");
 
   // ... The rest of the player logic
   action("mushroom", (m) => {
@@ -493,65 +315,103 @@ scene("game", ({ level, score }) => {
     });
   });
 
-  keyDown("left", () => {
-    player.move(-MOVE_SPEED, 0);
+  onKeyDown("right", () => {
+    if (player.curAnim() !== "Dashing" && player.isGrounded()) {
+      player.use(sprite("Dashing"));
+      player.play("run-anim");
+    }
+
+    if (player.direction !== "right") player.direction = "right";
+
+    player.move(player.speed, 0);
   });
 
-  keyDown("right", () => {
-    player.move(MOVE_SPEED, 0);
+  onKeyRelease("right", () => {
+    player.use(sprite("Knight"));
+    player.play("idle-anim");
+  });
+  onKeyDown("left", () => {
+    if (player.curAnim() !== "Dashing" && player.isGrounded()) {
+      player.use(sprite("Dashing"));
+      player.play("run-anim");
+    }
+
+    if (player.direction !== "left") player.direction = "left";
+
+    player.move(-player.speed, 0);
   });
 
-  keyDown("down", () => {
-    // Logic for when the down key is pressed
+  onKeyRelease("left", () => {
+    player.use(sprite("Knight"));
+    player.play("idle-anim");
   });
 
-  keyPress("space", () => {
-    if (player.grounded()) {
-      isJumping = true;
-      player.jump(CURRENT_JUMP_FORCE);
+  onKeyPress("up", () => {
+    if (player.isGrounded()) {
+      player.jump();
+    }
+  });
+
+  onUpdate(() => {
+    if (player.previousHeight) {
+      player.heightDelta = player.previousHeight - player.pos.y;
+    }
+
+    player.previousHeight = player.pos.y;
+
+    const cameraLeftBound = 550;
+    const cameraRightBound = 3000;
+    const cameraVerticalOffset = player.pos.y - 100;
+
+    if (cameraLeftBound > player.pos.x) {
+      camPos(cameraLeftBound, cameraVerticalOffset);
+    } else if (cameraRightBound < player.pos.x) {
+      camPos(cameraRightBound, cameraVerticalOffset);
+    } else {
+      camPos(player.pos.x, cameraVerticalOffset);
+    }
+
+    if (player.curAnim() !== "run-anim" && player.isGrounded()) {
+      player.use(sprite("Knight"));
+      player.play("idle-anim");
+    }
+
+    if (
+      player.curAnim() !== "Jump" &&
+      !player.isGrounded() &&
+      player.heightDelta > 0
+    ) {
+      player.use(sprite("Jump"));
+      player.play("jump-anim");
+    }
+
+    if (
+      player.curAnim() !== "Fall" &&
+      !player.isGrounded() &&
+      player.heightDelta < 0
+    ) {
+      player.use(sprite("Fall"));
+      player.play("fall-anim");
+    }
+
+    if (player.direction === "left") {
+      player.flipX = true;
+    } else {
+      player.flipX = false;
     }
   });
 
   player.action(() => {
     if (player.grounded()) {
       isJumping = false;
+      if (!keyIsDown("left") && !keyIsDown("right")) {
+        player.play(playerAnimations.idle); // Change animation to idle when player stops moving
+      }
     }
   });
 
   // ... The rest of the game logic
 });
-
-// ... (Your existing code)
-
-// Handle player interactions and actions
-keyPress("space", () => {
-  if (player.grounded()) {
-    isJumping = true;
-    player.jump(CURRENT_JUMP_FORCE);
-    player.play(playerAnimations.jump); // Change animation to jump when player jumps
-  }
-});
-
-keyDown("left", () => {
-  player.move(-MOVE_SPEED, 0);
-  player.play(playerAnimations.run); // Change animation to run when player moves left
-});
-
-keyDown("right", () => {
-  player.move(MOVE_SPEED, 0);
-  player.play(playerAnimations.run); // Change animation to run when player moves right
-});
-
-player.action(() => {
-  if (player.grounded()) {
-    isJumping = false;
-    if (!keyIsDown("left") && !keyIsDown("right")) {
-      player.play(playerAnimations.idle); // Change animation to idle when player stops moving
-    }
-  }
-});
-
-// ... (Rest of your game logic)
 
 scene("lose", ({ score }) => {
   add([
@@ -567,7 +427,7 @@ scene("lose", ({ score }) => {
   ]);
 
   // Key event listener for spacebar to restart the game
-  keyPress("A", () => {
+  keyPress("enter", () => {
     go("game", { level: 0, score: 0 }); // Restart the game with initial level and score
   });
 });
