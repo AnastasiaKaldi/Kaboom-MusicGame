@@ -1,388 +1,231 @@
 kaboom({
-  global: true,
+  width: 1280,
+  height: 720,
   fullscreen: true,
-  scale: 2,
-  debug: true,
-  clearColor: [0, 0, 0, 1],
 });
 
-// Speed identifiers
-const MOVE_SPEED = 120;
-const JUMP_FORCE = 360;
-const BIG_JUMP_FORCE = 550;
-let CURRENT_JUMP_FORCE = JUMP_FORCE;
-const FALL_DEATH = 400;
-const ENEMY_SPEED = 20;
+loadSpriteAtlas("./sprites/knight/tileset.png", {
+  "platform-left": {
+    x: 82,
+    y: 64,
+    width: 16,
+    height: 8,
+  },
+  "platform-middle": {
+    x: 112,
+    y: 64,
+    width: 16,
+    height: 8,
+  },
+  "platform-right": {
+    x: 142,
+    y: 64,
+    width: 16,
+    height: 8,
+  },
+  "smaller-tree": {
+    x: 0,
+    y: 80,
+    width: 60,
+    height: 65,
+  },
+  "bigger-tree": {
+    x: 170,
+    y: 10,
+    width: 115,
+    height: 200,
+  },
+  ground: {
+    x: 80,
+    y: 144,
+    width: 16,
+    height: 16,
+  },
+  "ground-deep": {
+    x: 0,
+    y: 144,
+    width: 16,
+    height: 16,
+  },
+});
 
-// Game logic
-let isJumping = false;
-
-loadSprite("coin", "./sprites/coin.png");
-loadSprite("evil-shroom", "./sprites/evilmushroom.png");
-loadSprite("block", "./sprites/block.png");
-loadSprite("mushroom", "./sprites/mushroom.png");
-loadSprite("surprise", "./sprites/surprise.png");
-loadSprite("unboxed", "./sprites/unboxed.png");
-loadSprite("pipe-top-left", "./sprites/pipe-top-left.png");
-loadSprite("pipe-top-right", "./sprites/pipe-top-right.png");
-loadSprite("pipe-bottom-left", "./sprites/pipe-bottom-left.png");
-loadSprite("pipe-bottom-right", "./sprites/pipe-bottom-right.png");
-
-loadSprite("Knight", "./sprites/knight/Idle.png", {
-  sliceX: 4,
+loadSprite("background-0", "./sprites/knight/background_0.png");
+loadSprite("background-1", "./sprites/knight/background_1.png");
+loadSprite("background-2", "./sprites/knight/background_2.png");
+loadSprite("idle-sprite", "./sprites/knight/Idle.png", {
+  sliceX: 8,
   sliceY: 1,
-  anims: { "idle-anim": { from: 0, to: 3, loop: true, speed: 1 } },
+  anims: { "idle-anim": { from: 0, to: 7, loop: true } },
 });
-loadSprite("Attack", "./sprites/knight/Attack1.png", {
-  sliceX: 6,
+loadSprite("run-sprite", "./sprites/knight/Run.png", {
+  sliceX: 8,
   sliceY: 1,
-  anims: { "attack-anim": { from: 0, to: 5, loop: true, speed: 1 } },
-});
-loadSprite("Fall", "./sprites/knight/Fall.png", {
-  sliceX: 3,
-  sliceY: 1,
-  anims: { "fall-anim": { from: 0, to: 2, loop: true, speed: 1 } },
-});
-loadSprite("Jump", "./sprites/knight/Jump.gif", {
-  sliceX: 6,
-  sliceY: 1,
-  anims: { "jump-anim": { from: 0, to: 5, loop: true, speed: 1 } },
-});
-loadSprite("Dashing", "./sprites/knight/Dashing.gif", {
-  sliceX: 4,
-  sliceY: 1,
-  anims: { "run-anim": { from: 0, to: 3, loop: true, speed: 1 } },
-});
-loadSprite("Walk", "./sprites/knight/Walking.png", {
-  sliceX: 7,
-  sliceY: 1,
-  anims: { "walk-anim": { from: 0, to: 6, loop: true, speed: 1 } },
-});
-loadSprite("Landing", "./sprites/knight/Landing.png", {
-  sliceX: 4,
-  sliceY: 1,
-  anims: { "land-anim": { from: 0, to: 3, loop: true, speed: 1 } },
+  anims: { "run-anim": { from: 0, to: 7, loop: true } },
 });
 
-loadSprite("blue-block", "./sprites/blueblock.png");
-loadSprite("blue-brick", "./sprites/bluebrick.png");
-loadSprite("blue-steel", "./sprites/bluesteel.png");
-loadSprite("blue-evil-shroom", "./sprites/bluemushroom.png");
-loadSprite("blue-surprise", "./sprites/bluesurprise.png");
+loadSprite("jump-sprite", "./sprites/knight/Jump.png", {
+  sliceX: 8,
+  sliceY: 1,
+  anims: { "jump-anim": { from: 0, to: 7, loop: true } },
+});
 
-scene("game", ({ level, score }) => {
-  layers(["bg", "obj", "ui"], "obj");
+loadSprite("fall-sprite", "./sprites/knight/Jump.png", {
+  sliceX: 8,
+  sliceY: 1,
+  anims: { "fall-anim": { from: 0, to: 7, loop: true } },
+});
 
-  const maps = [
-    [
-      "                                      ",
-      "                                      ",
-      "                                      ",
-      "                                      ",
-      "                                      ",
-      "     %%   %=*=%=                     % ",
-      "                                      ",
-      "                            -+        ",
-      "                    ^   ^   ()        ",
-      "==============================   =====",
-    ],
-    [
-      "£                                       £",
-      "£                                       £",
-      "£                                       £",
-      "£           ££££               >        £",
-      "£                             >>        £",
-      "£        @@@£@@@£@           >>>        £",
-      "£                          >>>>>        £",
-      "£                        >>>>>>>      -+£",
-      "£              <     <  >>>>>>>>      ()£",
-      "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
-    ],
-    [
-      "                                      ",
-      "                                      ",
-      "                                      ",
-      "                                      ",
-      "                                      ",
-      "     %   =*=%=       ^                ",
-      "                    ^^                ",
-      "                   ^^^       -+   %%  ",
-      "                  ^^^^      ()        ",
-      "==============================   =====",
-    ],
-  ];
+setGravity(1000);
 
-  const levelCfg = {
-    width: 20,
-    height: 20,
-    "=": [sprite("block"), solid()],
-    "&": [sprite("coin"), "coin"], // Changed from '%' to '$' for coins
-    "%": [sprite("surprise"), solid(), "coin-surprise"],
-    "*": [sprite("surprise"), solid(), "mushroom-surprise"],
-    "}": [sprite("unboxed"), solid()],
-    "(": [sprite("pipe-bottom-left"), solid(), scale(0.5)],
-    ")": [sprite("pipe-bottom-right"), solid(), scale(0.5)],
-    "-": [sprite("pipe-top-left"), solid(), scale(0.5), "pipe"],
-    "+": [sprite("pipe-top-right"), solid(), scale(0.5), "pipe"],
-    "^": [sprite("evil-shroom"), solid(), "dangerous"],
-    "#": [sprite("mushroom"), solid(), "mushroom", body()],
-    "!": [sprite("blue-block"), solid(), scale(0.5)],
-    "£": [sprite("blue-brick"), solid(), scale(0.5)],
-    "<": [sprite("blue-evil-shroom"), solid(), scale(0.5), "dangerous"],
-    "@": [sprite("blue-surprise"), solid(), scale(0.5), "coin-surprise"],
-    ">": [sprite("blue-steel"), solid(), scale(0.5)],
-  };
+add([sprite("background-0"), fixed(), scale(4)]);
 
-  const gameLevel = addLevel(maps[level], levelCfg);
+add([sprite("background-0"), fixed(), pos(1000, 0), scale(4)]).flipX = true;
 
-  const scoreLabel = add([
-    text("Score: " + score),
-    pos(120, 6),
-    layer("ui"),
-    {
-      value: score,
+add([sprite("background-1"), fixed(), scale(4)]);
+
+add([sprite("background-1"), fixed(), pos(1000, 0), scale(4)]).flipX = true;
+
+add([sprite("background-2"), fixed(), scale(4)]);
+
+add([sprite("background-2"), fixed(), pos(1000, 0), scale(4)]).flipX = true;
+
+const tree = add([sprite("smaller-tree"), scale(4), pos(40, 190)]);
+
+const map = addLevel(
+  [
+    "5                                                     5",
+    "5                                                     5",
+    "5   012                  012                  012     5",
+    "5        012                                          5",
+    "5                                   012               5",
+    "5   012              012                              5",
+    "5             012                                     5",
+    " 333333                      012           012        5",
+    " 444444                                               5",
+    " 444444   012                                         5",
+    " 33333333333333333333333333333333333333333333333333333 ",
+    " 44444444444444444444444444444444444444444444444444444 ",
+  ],
+  {
+    tileWidth: 16,
+    tileHeight: 16,
+    tiles: {
+      0: () => [sprite("platform-left"), area(), body({ isStatic: true })],
+      1: () => [sprite("platform-middle"), area(), body({ isStatic: true })],
+      2: () => [sprite("platform-right"), area(), body({ isStatic: true })],
+      3: () => [sprite("ground"), area(), body({ isStatic: true })],
+      4: () => [sprite("ground-deep"), area(), body({ isStatic: true })],
+      5: () => [rect(16, 16), opacity(0), area(), body({ isStatic: true })],
     },
-  ]);
+  }
+);
 
-  add([text("level " + parseInt(level + 1)), pos(40, 6)]);
+map.use(scale(4));
 
-  // ... The 'big' function and other functions
+const biggerTree = add([sprite("bigger-tree"), scale(4), pos(900, 104)]);
 
-  function big() {
-    let timer = 0;
-    let isBig = false;
-    return {
-      update() {
-        if (isBig) {
-          CURRENT_JUMP_FORCE = BIG_JUMP_FORCE;
-          timer -= dt();
-          if (timer <= 0) {
-            this.smallify();
-          }
-        }
-      },
-      isBig() {
-        return isBig;
-      },
-      smallify() {
-        this.scale = vec2(1);
-        CURRENT_JUMP_FORCE = JUMP_FORCE;
-        timer = 0;
-        isBig = false;
-      },
-      biggify(time) {
-        this.scale = vec2(2);
-        timer = time;
-        isBig = true;
-      },
-    };
+const player = add([
+  sprite("idle-sprite"),
+  scale(1),
+  area({ shape: new Rect(vec2(0), 32, 32), offset: vec2(0, 32) }),
+  anchor("center"),
+  body(),
+  pos(900, 10),
+  {
+    speed: 500,
+    previousHeight: null,
+    heightDelta: 0,
+    direction: "right",
+  },
+]);
+
+player.play("idle-anim");
+
+onKeyDown("right", () => {
+  if (player.curAnim() !== "run-anim" && player.isGrounded()) {
+    player.use(sprite("run-sprite"));
+    player.play("run-anim");
   }
 
-  const player = add([
-    sprite("Knight"),
-    solid(),
-    pos(30, 0),
-    body(),
-    big(),
-    origin("bot"),
-    scale(0.5),
-  ]);
+  if (player.direction !== "right") player.direction = "right";
 
+  player.move(player.speed, 0);
+});
+
+onKeyRelease("right", () => {
+  player.use(sprite("idle-sprite"));
   player.play("idle-anim");
-
-  // ... The rest of the player logic
-  action("mushroom", (m) => {
-    m.move(20, 0);
-  });
-
-  player.on("headbump", (obj) => {
-    if (obj.is("coin-surprise")) {
-      gameLevel.spawn("&", obj.gridPos.sub(0, 1));
-      destroy(obj);
-      gameLevel.spawn("}", obj.gridPos.sub(0, 0));
-    }
-    if (obj.is("mushroom-surprise")) {
-      gameLevel.spawn("#", obj.gridPos.sub(0, 1));
-      destroy(obj);
-      gameLevel.spawn("}", obj.gridPos.sub(0, 0));
-    }
-  });
-
-  player.collides("mushroom", (m) => {
-    destroy(m);
-    player.biggify(6);
-  });
-
-  player.collides("coin", (c) => {
-    destroy(c);
-    scoreLabel.value++;
-    scoreLabel.text = scoreLabel.value;
-  });
-
-  action("dangerous", (d) => {
-    d.move(-ENEMY_SPEED, 0);
-  });
-
-  player.collides("dangerous", (d) => {
-    if (isJumping) {
-      destroy(d);
-    } else {
-      go("lose", { score: scoreLabel.value });
-    }
-  });
-
-  player.action(() => {
-    camPos(player.pos);
-    if (player.pos.y >= FALL_DEATH) {
-      go("lose", { score: scoreLabel.value });
-    }
-  });
-
-  player.collides("pipe", () => {
-    keyPress("down", () => {
-      go("game", {
-        level: (level + 1) % maps.length,
-        score: scoreLabel.value,
-      });
-    });
-  });
-  player.action(() => {
-    if (player.grounded()) {
-      isJumping = false;
-
-      if (
-        player.curAnim() !== "idle-anim" &&
-        !keyIsDown("left") &&
-        !keyIsDown("right")
-      ) {
-        player.use(sprite("Knight"));
-        player.play("idle-anim");
-      }
-
-      if (keyIsDown("left")) {
-        if (player.curAnim() !== "run-anim") {
-          player.use(sprite("Dashing"));
-          player.play("run-anim");
-        }
-        player.move(-MOVE_SPEED, 0);
-        player.flipX = true;
-      }
-
-      if (keyIsDown("right")) {
-        if (player.curAnim() !== "run-anim") {
-          player.use(sprite("Dashing"));
-          player.play("run-anim");
-        }
-        player.move(MOVE_SPEED, 0);
-        player.flipX = false;
-      }
-
-      if (keyIsPressed("up")) {
-        if (!isJumping) {
-          player.jump(CURRENT_JUMP_FORCE);
-          isJumping = true;
-        }
-      }
-
-      if (!keyIsDown("left") && !keyIsDown("right") && !keyIsDown("up")) {
-        if (player.curAnim() !== "idle-anim") {
-          player.use(sprite("Knight"));
-          player.play("idle-anim");
-        }
-      }
-    } else {
-      if (player.heightDelta > 0) {
-        if (player.curAnim() !== "jump-anim") {
-          player.use(sprite("Jump"));
-          player.play("jump-anim");
-        }
-      } else if (player.heightDelta < 0) {
-        if (player.curAnim() !== "fall-anim") {
-          player.use(sprite("Fall"));
-          player.play("fall-anim");
-        }
-      }
-    }
-  });
-
-  action(() => {
-    if (player.previousHeight) {
-      player.heightDelta = player.previousHeight - player.pos.y;
-    }
-
-    player.previousHeight = player.pos.y;
-
-    // const cameraLeftBound = 550;
-    // const cameraRightBound = 3000;
-    // const cameraVerticalOffset = player.pos.y - 100;
-
-    // if (cameraLeftBound > player.pos.x) {
-    //   camPos(cameraLeftBound, cameraVerticalOffset);
-    // } else if (cameraRightBound < player.pos.x) {
-    //   camPos(cameraRightBound, cameraVerticalOffset);
-    // } else {
-    //   camPos(player.pos.x, cameraVerticalOffset);
-    // }
-
-    if (player.curAnim() !== "run-anim" && player.grounded()) {
-      player.use(sprite("Knight"));
-      player.play("idle-anim");
-    }
-    //player.player.grounded()
-    if (
-      player.curAnim() !== "Jump" &&
-      !player.grounded() &&
-      player.heightDelta > 0
-    ) {
-      player.use(sprite("Jump"));
-      player.play("jump-anim");
-    }
-
-    if (
-      player.curAnim() !== "Fall" &&
-      !player.grounded() &&
-      player.heightDelta < 0
-    ) {
-      player.use(sprite("Fall"));
-      player.play("fall-anim");
-    }
-
-    if (player.direction === "left") {
-      player.flipX = true;
-    } else {
-      player.flipX = false;
-    }
-  });
-
-  // player.action(() => {
-  //   if (player.grounded()) {
-  //     isJumping = false;
-  //     if (!keyIsDown("left") && !keyIsDown("right")) {
-  //       player.play("idle-anim");
-  //     }
-  //   }
-  // });
-
-  // ... The rest of the game logic
 });
 
-scene("lose", ({ score }) => {
-  add([
-    text("Press Enter to Restart", 32),
-    origin("center"),
-    pos(width() / 2, height() / 2 - 20),
-  ]);
+onKeyDown("left", () => {
+  if (player.curAnim() !== "run-anim" && player.isGrounded()) {
+    player.use(sprite("run-sprite"));
+    player.play("run-anim");
+  }
 
-  add([
-    text("Score: " + score, 24),
-    origin("center"),
-    pos(width() / 2, height() / 2 + 20),
-  ]);
+  if (player.direction !== "left") player.direction = "left";
 
-  // Key event listener for spacebar to restart the game
-  keyPress("space", () => {
-    go("game", { level: 0, score: 0 }); // Restart the game with initial level and score
-  });
+  player.move(-player.speed, 0);
 });
 
-start("game", { level: 0, score: 0 });
+onKeyRelease("left", () => {
+  player.use(sprite("idle-sprite"));
+  player.play("idle-anim");
+});
+
+onKeyPress("up", () => {
+  if (player.isGrounded()) {
+    player.jump();
+  }
+});
+
+camScale(1.5);
+
+onUpdate(() => {
+  if (player.previousHeight) {
+    player.heightDelta = player.previousHeight - player.pos.y;
+  }
+
+  player.previousHeight = player.pos.y;
+
+  const cameraLeftBound = 550;
+  const cameraRightBound = 3000;
+  const cameraVerticalOffset = player.pos.y - 100;
+
+  if (cameraLeftBound > player.pos.x) {
+    camPos(cameraLeftBound, cameraVerticalOffset);
+  } else if (cameraRightBound < player.pos.x) {
+    camPos(cameraRightBound, cameraVerticalOffset);
+  } else {
+    camPos(player.pos.x, cameraVerticalOffset);
+  }
+
+  if (player.curAnim() !== "run-anim" && player.isGrounded()) {
+    player.use(sprite("idle-sprite"));
+    player.play("idle-anim");
+  }
+
+  if (
+    player.curAnim() !== "jump-anim" &&
+    !player.isGrounded() &&
+    player.heightDelta > 0
+  ) {
+    player.use(sprite("jump-sprite"));
+    player.play("jump-anim");
+  }
+
+  if (
+    player.curAnim() !== "fall-anim" &&
+    !player.isGrounded() &&
+    player.heightDelta < 0
+  ) {
+    player.use(sprite("fall-sprite"));
+    player.play("fall-anim");
+  }
+
+  if (player.direction === "left") {
+    player.flipX = true;
+  } else {
+    player.flipX = false;
+  }
+});
