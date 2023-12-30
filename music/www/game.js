@@ -1,6 +1,5 @@
 kaboom({
   global: true,
-  fullscreen: true,
   scale: 2,
   debug: true,
   clearColor: [0, 0, 0, 1],
@@ -17,8 +16,14 @@ const ENEMY_SPEED = 20;
 // Game logic
 let isJumping = false;
 
+loadSprite("cloud1", "./sprites/game_background_4/clouds_1.png");
+loadSprite("cloud2", "./sprites/game_background_4/clouds_2.png");
+loadSprite("ground", "./sprites/game_background_4/ground.png");
+loadSprite("rocks", "./sprites/game_background_4/rocks.png");
+loadSprite("sky", "./sprites/game_background_4/sky.png");
+
 loadSprite("coin", "./sprites/coin.png");
-loadSprite("evil-shroom", "./sprites/evilmushroom.png");
+loadSprite("evil-shroom", "./sprites/slime.png");
 loadSprite("block", "./sprites/block.png");
 loadSprite("mushroom", "./sprites/mushroom.png");
 loadSprite("surprise", "./sprites/surprise.png");
@@ -52,7 +57,7 @@ loadSprite("Dashing", "./sprites/knight/Idle.png", {
 loadSprite("blue-block", "./sprites/blueblock.png");
 loadSprite("blue-brick", "./sprites/bluebrick.png");
 loadSprite("blue-steel", "./sprites/bluesteel.png");
-loadSprite("blue-evil-shroom", "./sprites/bluemushroom.png");
+loadSprite("blue-evil-shroom", "./sprites/SlimeOrange.png");
 loadSprite("blue-surprise", "./sprites/bluesurprise.png");
 
 scene("game", ({ level, score }) => {
@@ -119,6 +124,14 @@ scene("game", ({ level, score }) => {
   };
 
   const gameLevel = addLevel(maps[level], levelCfg);
+
+  add([sprite("cloud1"), layer("bg"), scale(4)], pos(2000, 0));
+  add([sprite("cloud2"), layer("bg"), scale(4)], pos(2000, 0));
+  add([sprite("ground"), layer("bg"), scale(4)], pos(2000, 0));
+  add([sprite("rocks"), layer("bg"), scale(4)], pos(2000, 0));
+  add([sprite("sky"), layer("bg"), scale(4)], pos(2000, 0));
+
+  // Adding the evil-shroom sprite at the bottom of the scene
 
   const scoreLabel = add([
     text("Score: " + score),
