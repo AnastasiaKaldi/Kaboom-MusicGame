@@ -1,6 +1,7 @@
 kaboom({
   global: true,
   scale: 2,
+  fullscreen: true,
   debug: true,
   clearColor: [0, 0, 0, 1],
 });
@@ -16,11 +17,7 @@ const ENEMY_SPEED = 20;
 // Game logic
 let isJumping = false;
 
-loadSprite("cloud1", "./sprites/game_background_4/clouds_1.png");
-loadSprite("cloud2", "./sprites/game_background_4/clouds_2.png");
-loadSprite("ground", "./sprites/game_background_4/ground.png");
-loadSprite("rocks", "./sprites/game_background_4/rocks.png");
-loadSprite("sky", "./sprites/game_background_4/sky.png");
+loadSprite("background", "./sprites/game_background_4.png");
 
 loadSprite("coin", "./sprites/coin.png");
 loadSprite("evil-shroom", "./sprites/slime.png");
@@ -65,16 +62,18 @@ scene("game", ({ level, score }) => {
 
   const maps = [
     [
-      "                                      ",
-      "                                      ",
-      "                                      ",
-      "                                      ",
-      "                                      ",
-      "     %%   %=*=%=                     % ",
-      "                                      ",
-      "                            -+        ",
-      "                    ^   ^   ()        ",
-      "==============================   =====",
+      "                      %                  ",
+      "                                         ",
+      "                                         ",
+      "                   =====                ",
+      "          ====           =====           ",
+      "                  =                      ",
+      "                     ===                 ",
+      "                = =                      ",
+      "            =                            ",
+      "      =====                 -+           ",
+      "                    ^  ^    ()           ",
+      "======================================   ",
     ],
     [
       "£                                       £",
@@ -105,7 +104,7 @@ scene("game", ({ level, score }) => {
   const levelCfg = {
     width: 20,
     height: 20,
-    "=": [sprite("block"), solid()],
+    "=": [sprite("block"), solid(), pos(width() / 2, height())],
     "&": [sprite("coin"), "coin"], // Changed from '%' to '$' for coins
     "%": [sprite("surprise"), solid(), "coin-surprise"],
     "*": [sprite("surprise"), solid(), "mushroom-surprise"],
@@ -125,11 +124,7 @@ scene("game", ({ level, score }) => {
 
   const gameLevel = addLevel(maps[level], levelCfg);
 
-  add([sprite("cloud1"), layer("bg"), scale(4)], pos(2000, 0));
-  add([sprite("cloud2"), layer("bg"), scale(4)], pos(2000, 0));
-  add([sprite("ground"), layer("bg"), scale(4)], pos(2000, 0));
-  add([sprite("rocks"), layer("bg"), scale(4)], pos(2000, 0));
-  add([sprite("sky"), layer("bg"), scale(4)], pos(2000, 0));
+  add([sprite("background"), layer("bg"), origin("topleft"), scale(0.9)]);
 
   // Adding the evil-shroom sprite at the bottom of the scene
 
@@ -231,12 +226,12 @@ scene("game", ({ level, score }) => {
     }
   });
 
-  player.action(() => {
-    camPos(player.pos);
-    if (player.pos.y >= FALL_DEATH) {
-      go("lose", { score: scoreLabel.value });
-    }
-  });
+  // player.action(() => {
+  //   camPos(player.pos);
+  //   if (player.pos.y >= FALL_DEATH) {
+  //     go("lose", { score: scoreLabel.value });
+  //   }
+  // });
 
   player.collides("pipe", () => {
     keyPress("down", () => {
@@ -306,7 +301,7 @@ scene("game", ({ level, score }) => {
 
 scene("lose", ({ score }) => {
   add([
-    text("Press Enter to Restart", 32),
+    text("Press Space to Restart", 32),
     origin("center"),
     pos(width() / 2, height() / 2 - 20),
   ]);
