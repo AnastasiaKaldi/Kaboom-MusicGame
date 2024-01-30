@@ -71,15 +71,15 @@ scene("game", ({ level, score }) => {
       "                                         ",
       "                                         ",
       "                                         ",
+      "          =                              ",
       "                                         ",
       "                                         ",
-      "                    %                    ",
-      "                   =====                 ",
-      "          ====           =====           ",
-      "                  =                      ",
-      "                     ===                 ",
-      "                = =                      ",
-      "            =                            ",
+      "                   =====        =========",
+      "          ====           =====  =        ",
+      "                  =             =        ",
+      "                     ===        =        ",
+      "                = =             =   %    ",
+      "            =                       ==== ",
       "      =====               +              ",
       "                                         ",
       "=================================   =====",
@@ -141,28 +141,12 @@ scene("game", ({ level, score }) => {
     if (userAnswer === question.correctAnswer) {
       // Correct answer, open the door
       isDoorOpen = true;
-      gameLevel.spawn("+", vec2(10, 10));
-      wait(1, () => {
-        gameLevel.collides("door", (d) => {
-          keyPress("down", () => {
-            // Only allow progression if the door is open
-            if (isDoorOpen) {
-              go("game", {
-                level: (level + 1) % maps.length,
-                score: scoreLabel.value,
-              });
-            } else {
-              console.log(
-                "The door is locked. Answer the question to open it."
-              );
-            }
-          });
-        });
-      });
+      console.log("You answered correctly! The door is now open.");
+      showNextInstruction(); // Move to the next instruction after answering the question
     } else {
-      // Incorrect answer, provide feedback or take other actions
-      // For now, let's just log a message
-      console.log("Incorrect answer. The door remains locked.");
+      // Incorrect answer, provide feedback and ask the question again
+      console.log("Incorrect answer. Try again!");
+      askQuestion();
     }
   };
 
@@ -170,8 +154,8 @@ scene("game", ({ level, score }) => {
     "Welcome to the Game!",
     "The door is locked",
     "To open it, answer the question",
-    "Good Luck!",
     "What is the capital of France?",
+    "Good Luck!",
   ];
 
   const instructionText = add([
@@ -190,9 +174,9 @@ scene("game", ({ level, score }) => {
       instructionText.text = text.slice(0, index + 1);
       wait(0.09, () => typeText(text, index + 1));
     } else {
-      // If this is the last instruction, wait for a few seconds before asking the question
+      // If this is the last instruction, wait for a few seconds before stopping
       if (currentInstructionIndex === instructions.length - 1) {
-        wait(5, () => askQuestion());
+        wait(5, () => stopTyping());
       } else {
         showNextInstruction();
       }
@@ -210,6 +194,8 @@ scene("game", ({ level, score }) => {
 
   function stopTyping() {
     // Additional logic if needed
+    // Start asking the question after the instructions finish typing
+    askQuestion();
   }
 
   typeText(instructions[currentInstructionIndex]);
@@ -306,10 +292,16 @@ scene("game", ({ level, score }) => {
 
   player.collides("door", () => {
     keyPress("down", () => {
-      go("game", {
-        level: (level + 1) % maps.length,
-        score: scoreLabel.value,
-      });
+      // Only allow progression if the door is open
+      if (isDoorOpen) {
+        go("game", {
+          level: (level + 1) % maps.length,
+          score: scoreLabel.value,
+        });
+      } else {
+        console.log("The door is locked. Answer the question to open it.");
+        askQuestion();
+      }
     });
   });
 
