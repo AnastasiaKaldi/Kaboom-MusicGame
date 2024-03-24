@@ -19,10 +19,10 @@ const score = 0;
 // Game logic
 let isJumping = false;
 
-loadSprite("coin", "./sprites/key.png");
+loadSprite("key", "./sprites/key.png");
 loadSprite("evil-shroom", "./sprites/slime.png");
+loadSprite("evil-slime", "./sprites/SlimeOrange.png");
 loadSprite("block", "./sprites/Tile-Set.png");
-loadSprite("mushroom", "./sprites/mushroom.png");
 loadSprite("surprise", "./sprites/Treasure.png");
 loadSprite("unboxed", "./sprites/unboxed.png");
 loadSprite("Door", "./sprites/Door.png");
@@ -59,30 +59,30 @@ scene("game", ({ level, score }) => {
 
   const maps = [
     [
-      "                                         ",
-      "                                         ",
-      "                                         ",
-      "                                         ",
-      "                                         ",
-      "                                         ",
-      "                                         ",
-      "                                         ",
-      "                                         ",
-      "                                         ",
-      "                                         ",
-      "                                         ",
-      "          =                              ",
-      "                                         ",
-      "                                         ",
-      "                   =====        =========",
-      "          ====           =====  =        ",
-      "                  =             =        ",
-      "                     ===        =        ",
-      "                = =             =   %    ",
-      "            =                       ==== ",
-      "      =====               +              ",
-      "                                         ",
-      "=================================   =====",
+      "                                           ",
+      "                                           ",
+      "                                           ",
+      "                                           ",
+      "                                           ",
+      "                                           ",
+      "=                                          =",
+      "=                                          =",
+      "=                                          =",
+      "=         =====                            =",
+      "=         =   =                            =",
+      "=         =   =                            =",
+      "=         =====     =====                  =",
+      "=                   =   =                  =",
+      "=                   =   =                  =",
+      "=                   =====        ===========",
+      "=          ====           =====  =         =",
+      "=                                =         =",
+      "=                                =         =",
+      "=                             =     %      =",
+      "=                                  ====    =",
+      "=         ^      #        +                =",
+      "=                                          =",
+      "============================================",
     ],
     [
       "£                                       £",
@@ -114,23 +114,24 @@ scene("game", ({ level, score }) => {
     width: 20,
     height: 20,
     "=": [sprite("block"), solid(), pos(width() / 2, height()), scale(0.5)],
-    "&": [sprite("coin"), scale(1.0), "coin"], // Changed from '%' to '$' for coins
-    "%": [sprite("surprise"), scale(1.5), "coin-surprise"],
+    "&": [sprite("key"), scale(1.0), "key"], // Changed from '%' to '$' for coins
+    "%": [sprite("surprise"), scale(1.5), "key-surprise"],
     "*": [sprite("surprise"), solid(), "mushroom-surprise"],
+    "^": [sprite("evil-shroom"), solid(), "dangerous", body()],
+    "#": [sprite("evil-slime"), solid(), "dangerous", body(), scale(0.5)],
     "}": [sprite("unboxed"), scale(1.3)],
     "+": [sprite("Door"), scale(1.5), "door"],
-    "#": [sprite("mushroom"), solid(), "mushroom", body()],
     "!": [sprite("blue-block"), solid(), scale(0.5)],
     "£": [sprite("blue-brick"), solid(), scale(0.5)],
-    "@": [sprite("blue-surprise"), solid(), scale(0.5), "coin-surprise"],
+    "@": [sprite("blue-surprise"), solid(), scale(0.5), "key-surprise"],
     ">": [sprite("blue-steel"), solid(), scale(0.5)],
   };
 
   const gameLevel = addLevel(maps[level], levelCfg);
 
   const question = {
-    text: "What is the capital of France?",
-    correctAnswer: "Paris",
+    text: "What note do you hear?",
+    correctAnswer: "D",
   };
 
   let isDoorOpen = false; // Variable to track if the door is open
@@ -154,7 +155,6 @@ scene("game", ({ level, score }) => {
     "Welcome to the Game!",
     "The door is locked",
     "To open it, answer the question",
-    "What is the capital of France?",
     "Good Luck!",
   ];
 
@@ -195,13 +195,11 @@ scene("game", ({ level, score }) => {
   function stopTyping() {
     // Additional logic if needed
     // Start asking the question after the instructions finish typing
-    askQuestion();
   }
 
   typeText(instructions[currentInstructionIndex]);
 
   // ... The 'big' function and other functions
-
   function big() {
     let timer = 0;
     let isBig = false;
@@ -247,21 +245,8 @@ scene("game", ({ level, score }) => {
   player.play("idle-anim");
 
   // ... The rest of the player logic
-  action("mushroom", (m) => {
-    m.move(20, 0);
-  });
 
-  // player.on("headbump", (obj) => {
-  //   keyPress("down", () => {
-  //     if (obj.is("coin-surprise")) {
-  //       gameLevel.spawn("&", obj.gridPos.sub(0, 1));
-  //       destroy(obj);
-  //       gameLevel.spawn("}", obj.gridPos.sub(0, 0));
-  //     }
-  //   });
-  // });
-
-  player.collides("coin-surprise", (obj) => {
+  player.collides("key-surprise", (obj) => {
     player.action(() => {
       if (keyIsPressed("down")) {
         gameLevel.spawn("&", obj.gridPos.sub(0, 1));
@@ -271,12 +256,11 @@ scene("game", ({ level, score }) => {
     });
   });
 
-  player.collides("mushroom", (m) => {
-    destroy(m);
-    player.biggify(6);
+  action("dangerous", (d) => {
+    d.move(-ENEMY_SPEED, 0);
   });
 
-  player.collides("coin", (c) => {
+  player.collides("key", (c) => {
     destroy(c);
     scoreLabel.value++;
     scoreLabel.text = scoreLabel.value;
@@ -300,7 +284,7 @@ scene("game", ({ level, score }) => {
         });
       } else {
         console.log("The door is locked. Answer the question to open it.");
-        askQuestion();
+        // askQuestion();
       }
     });
   });
