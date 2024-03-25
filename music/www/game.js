@@ -27,26 +27,10 @@ loadSprite("surprise", "./sprites/Treasure.png");
 loadSprite("unboxed", "./sprites/unboxed.png");
 loadSprite("Door", "./sprites/Door.png");
 
-loadSprite("Knight", "./sprites/knight/Idle.png", {
-  sliceX: 4,
-  sliceY: 1,
-  anims: { "idle-anim": { from: 0, to: 3, loop: true, speed: 0.1 } },
-});
-loadSprite("Fall", "./sprites/knight/Idle.png", {
-  sliceX: 4,
-  sliceY: 1,
-  anims: { "fall-anim": { from: 0, to: 3, loop: true, speed: 0.1 } },
-});
-loadSprite("Jump", "./sprites/knight/Idle.png", {
-  sliceX: 4,
-  sliceY: 1,
-  anims: { "jump-anim": { from: 0, to: 3, loop: true, speed: 0.1 } },
-});
-loadSprite("Dashing", "./sprites/knight/Idle.png", {
-  sliceX: 4,
-  sliceY: 1,
-  anims: { "run-anim": { from: 0, to: 3, loop: false, speed: 0.5 } },
-});
+loadSprite("Knight", "./sprites/avatar.png");
+loadSprite("Fall", "./sprites/avatar.png");
+loadSprite("Jump", "./sprites/avatar.png");
+loadSprite("Dashing", "./sprites/avatar.png");
 
 loadSprite("blue-block", "./sprites/blueblock.png");
 loadSprite("blue-brick", "./sprites/bluebrick.png");
@@ -237,12 +221,10 @@ scene("game", ({ level, score }) => {
     body(),
     big(),
     origin("bot"),
-    scale(0.5),
+    scale(0.2),
   ]);
 
   console.log("Player after creation:", player);
-
-  player.play("idle-anim");
 
   // ... The rest of the player logic
 
@@ -284,7 +266,7 @@ scene("game", ({ level, score }) => {
         });
       } else {
         console.log("The door is locked. Answer the question to open it.");
-        // askQuestion();
+        askQuestion();
       }
     });
   });
@@ -299,32 +281,25 @@ scene("game", ({ level, score }) => {
         // Player just landed
         isJumping = false;
         player.use(sprite("Knight"));
-        player.play("idle-anim");
       } else {
         // Player is on the ground, not jumping
         if (!keyIsDown("left") && !keyIsDown("right")) {
-          if (player.curAnim() !== "idle-anim") {
-            player.use(sprite("Knight"));
-            player.play("idle-anim");
-          }
-        } else if (player.curAnim() !== "run-anim") {
+          player.use(sprite("Knight"));
+        } else if (player.curAnim() !== "Dashing") {
           player.use(sprite("Dashing"));
-          player.play("run-anim");
         }
       }
     } else {
       // Player is in the air
       if (isJumping) {
         // Player is jumping
-        if (player.curAnim() !== "jump-anim") {
+        if (player.curAnim() !== "Jump") {
           player.use(sprite("Jump"));
-          player.play("jump-anim");
         }
       } else {
         // Player is falling
-        if (player.curAnim() !== "fall-anim") {
+        if (player.curAnim() !== "Fall") {
           player.use(sprite("Fall"));
-          player.play("fall-anim");
         }
       }
     }
