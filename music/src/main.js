@@ -8,6 +8,14 @@ kaboom({
 loadSprite("bean", "./sprites/bean.png");
 loadSprite("bag", "./sprites/bag.png");
 loadSprite("ghosty", "./sprites/ghosty.png");
+loadSprite("e1", "./sprites/e1.png");
+loadSprite("e2", "./sprites/e2.png");
+loadSprite("e3", "./sprites/e3.png");
+loadSprite("e4", "./sprites/e4.png");
+loadSprite("e5", "./sprites/e5.png");
+loadSprite("e6", "./sprites/e6.png");
+loadSprite("e7", "./sprites/e7.png");
+loadSprite("e8", "./sprites/e8.png");
 loadSprite("spike", "./sprites/spike.png");
 loadSprite("grass", "./sprites/grass.png");
 loadSprite("steel", "./sprites/steel.png");
@@ -15,6 +23,14 @@ loadSprite("prize", "./sprites/jumpy.png");
 loadSprite("apple", "./sprites/apple.png");
 loadSprite("portal", "./sprites/portal.png");
 loadSprite("coin", "./sprites/coin.png");
+loadSprite("purple", "./sprites/purple.png");
+loadSprite("blue", "./sprites/blue.png");
+loadSprite("brown", "./sprites/brown.png");
+loadSprite("navy", "./sprites/navy.png");
+loadSprite("white", "./sprites/white.png");
+loadSprite("pink", "./sprites/pink.png");
+loadSprite("green", "./sprites/green.png");
+loadSprite("teal", "./sprites/teal.png");
 loadSound("coin", "./sprites/sounds/score.mp3");
 loadSound("powerup", "./sprites/sounds/powerup.mp3");
 loadSound("blip", "./sprites/sounds/blip.mp3");
@@ -84,34 +100,35 @@ const MOVE_SPEED = 480;
 const FALL_DEATH = 2000;
 
 const LEVELS = [
-  "                          ",
-  "                          ",
-  "                          ",
-  "                          ",
-  "                          ",
-  "                          ",
-  "                          ",
-  "                          ",
-  "                                            ",
-  "                                            ",
-  "           $$$$                       $      ",
-  "       $$                             $      ",
-  "  $$    $$ $$$$                       $      ",
-  "    $$                                $      ",
-  " %   $$  $$                           $     ",
-  "    =  ^^ >^^^        ^^^    >        @     ",
-  "============================================",
-  ,
+  [
+    "                          ",
+    "                          ",
+    "                          ",
+    "                          ",
+    "                          ",
+    "                          ",
+    "                          ",
+    "                          ",
+    "                                            ",
+    "                                            ",
+    "           $$$$                       $      ",
+    "       $$                             $      ",
+    "  $$    $$ $$$$                       $      ",
+    "    $$           p b r n w p g t      $   ",
+    " %   $$  $$                           $     ",
+    "    =  ^^ >^^^               >        @     ",
+    "============================================",
+  ],
   [
     "       $$$$              ",
     "       ====       $$     ",
-    "  $$   $$$$  $$   ==     ",
-    "% ==== ====  ==== ==  %  ",
-    " $$ $$====$$====$$       ",
-    "====$========$====$==  = $",
-    "   $$  ==  ==  ==    =  $",
-    "====  ====  ====     =   ",
-    "^^       >    =>>    =  @",
+    "  $$   $$$$  $$          ",
+    "% ccc                 %  ",
+    " $$ $$  $$      $$       ",
+    "                        $",
+    "                     =  $",
+    "                     =   ",
+    "^  + & ! ( ) { } |   =  @",
     "==========================",
   ],
 
@@ -207,6 +224,158 @@ const levelConf = {
       offscreen({ hide: true }),
       "portal",
     ],
+    p: () => [
+      sprite("purple"),
+      scale(1.6),
+      area(),
+      body({ isStatic: true }),
+      anchor("bot"),
+      offscreen({ hide: true }),
+      "purple",
+    ],
+    b: () => [
+      sprite("blue"),
+      scale(1.6),
+      area(),
+      body({ isStatic: true }),
+      anchor("bot"),
+      offscreen({ hide: true }),
+      "purple",
+    ],
+    r: () => [
+      sprite("brown"),
+      scale(1.6),
+      area(),
+      body({ isStatic: true }),
+      anchor("bot"),
+      offscreen({ hide: true }),
+      "purple",
+    ],
+    n: () => [
+      sprite("navy"),
+      scale(1.6),
+      area(),
+      body({ isStatic: true }),
+      anchor("bot"),
+      offscreen({ hide: true }),
+      "purple",
+    ],
+    w: () => [
+      sprite("white"),
+      scale(1.6),
+      area(),
+      body({ isStatic: true }),
+      anchor("bot"),
+      offscreen({ hide: true }),
+      "purple",
+    ],
+    i: () => [
+      sprite("pink"),
+      scale(1.6),
+      area(),
+      body({ isStatic: true }),
+      anchor("bot"),
+      offscreen({ hide: true }),
+      "purple",
+    ],
+    g: () => [
+      sprite("green"),
+      scale(1.6),
+      area(),
+      body({ isStatic: true }),
+      anchor("bot"),
+      offscreen({ hide: true }),
+      "purple",
+    ],
+    t: () => [
+      sprite("teal"),
+      scale(1.6),
+      area(),
+      body({ isStatic: true }),
+      anchor("bot"),
+      offscreen({ hide: true }),
+      "purple",
+    ],
+    "+": () => [
+      sprite("e2"),
+      scale(2),
+      area(),
+      anchor("bot"),
+      body(),
+      patrol(),
+      offscreen({ hide: true }),
+      "enemies",
+    ],
+    "&": () => [
+      sprite("e2"),
+      scale(2),
+      area(),
+      anchor("bot"),
+      body(),
+      patrol(),
+      offscreen({ hide: true }),
+      "enemies",
+    ],
+    "!": () => [
+      sprite("e3"),
+      scale(2),
+      area(),
+      anchor("bot"),
+      body(),
+      patrol(),
+      offscreen({ hide: true }),
+      "enemies",
+    ],
+    "(": () => [
+      sprite("e4"),
+      scale(2),
+      area(),
+      anchor("bot"),
+      body(),
+      patrol(),
+      offscreen({ hide: true }),
+      "enemies",
+    ],
+    ")": () => [
+      sprite("e5"),
+      scale(2),
+      area(),
+      anchor("bot"),
+      body(),
+      patrol(),
+      offscreen({ hide: true }),
+      "enemies",
+    ],
+    "{": () => [
+      sprite("e6"),
+      scale(2),
+      area(),
+      anchor("bot"),
+      body(),
+      patrol(),
+      offscreen({ hide: true }),
+      "enemies",
+    ],
+    "}": () => [
+      sprite("e7"),
+      scale(2),
+      area(),
+      anchor("bot"),
+      body(),
+      patrol(),
+      offscreen({ hide: true }),
+      "enemies",
+    ],
+    "|": () => [
+      sprite("e8"),
+      scale(2),
+      area(),
+      anchor("bot"),
+      body(),
+      patrol(),
+      offscreen({ hide: true }),
+      "enemies",
+    ],
   },
 };
 
@@ -283,6 +452,42 @@ scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
     }
   });
 
+  const enemyOrder = ["e1", "e2", "e3", "e4", "e5", "e6", "e7", "e8"]; // etc...
+  let currentTargetIndex = 0;
+  let currentLevel = 2;
+
+  player.onCollide("enemies", (enemy) => {
+    console.log("Collided with enemy");
+    // Check if the current level has a special lose condition
+    if (LEVELS[currentLevel].enforceOrder) {
+      console.log("Enforce order is true");
+      if (
+        enemy.is(
+          LEVELS[currentLevel].enemyOrder[
+            LEVELS[currentLevel].currentTargetIndex
+          ]
+        )
+      ) {
+        console.log("Correct enemy defeated");
+        LEVELS[currentLevel].currentTargetIndex++;
+        destroy(enemy);
+        if (
+          LEVELS[currentLevel].currentTargetIndex >=
+          LEVELS[currentLevel].enemyOrder.length
+        ) {
+          console.log("All enemies defeated in order");
+          go("win");
+        }
+      } else {
+        console.log("Incorrect enemy - lose condition");
+        go("lose", { reason: "wrongOrder" });
+      }
+    } else {
+      console.log("Standard logic");
+      // Standard enemy collision logic
+    }
+  });
+
   let hasApple = false;
 
   // grow an apple if player's head bumps into an obj with "prize" tag
@@ -292,6 +497,13 @@ scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
       apple.jump();
       hasApple = true;
       play("blip");
+    }
+  });
+
+  player.onHeadbutt((obj) => {
+    if (obj.is("purple")) {
+      // Check if the object collided with has the "purple" tag
+      play("blip"); // Play the headbutt sound specifically for the purple block
     }
   });
 
