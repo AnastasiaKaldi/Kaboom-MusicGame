@@ -31,6 +31,19 @@ loadSprite("white", "./sprites/white.png");
 loadSprite("pink", "./sprites/pink.png");
 loadSprite("green", "./sprites/green.png");
 loadSprite("teal", "./sprites/teal.png");
+loadSprite("NC", "./sprites/NC.png");
+loadSprite("water", "./sprites/Water.png", {
+  sliceX: 8,
+  sliceY: 1,
+  anims: {
+    wave: {
+      from: 0,
+      to: 7,
+      speed: 16,
+      loop: true,
+    },
+  },
+});
 loadSound("coin", "./sprites/sounds/score.mp3");
 loadSound("powerup", "./sprites/sounds/powerup.mp3");
 loadSound("blip", "./sprites/sounds/blip.mp3");
@@ -102,13 +115,6 @@ const FALL_DEATH = 2000;
 const LEVELS = [
   [
     "                          ",
-    "                          ",
-    "                          ",
-    "                          ",
-    "                          ",
-    "                          ",
-    "                          ",
-    "                          ",
     "                                            ",
     "                                            ",
     "           $$$$                       $      ",
@@ -118,21 +124,30 @@ const LEVELS = [
     " %   $$  $$                           $     ",
     "    =  ^^ >^^^               >        @     ",
     "============================================",
+    "============================================",
+    "============================================",
+    "============================================",
+    "============================================",
   ],
   [
     "       $$$$              ",
     "       ====       $$     ",
     "  $$   $$$$  $$          ",
-    "% ccc                 %  ",
+    "%                     %  ",
     " $$ $$  $$      $$       ",
     "                        $",
     "                     =  $",
     "                     =   ",
-    "^  + & ! ( ) { } |   =  @",
+    "^                    =  @",
+    "==========================",
+    "==========================",
+    "==========================",
+    "==========================",
     "==========================",
   ],
 
   [
+    "$   $   %   $   $   %   $  ",
     "$   $   %   $   $   %   $  ",
     "$   $       $   $       $  ",
     "    %   ==    %    ==     %",
@@ -142,10 +157,22 @@ const LEVELS = [
     "    ==      ==      ==    ",
     ">^^^>^^^>^^^>^^^>^^^>^^^>^@",
     "===========================",
+    "===========================",
+    "===========================",
+    "===========================",
+    "===========================",
   ],
 ];
 
-// define what each symbol means in the level graph
+function drawWaves() {
+  console.log("Drawing waves");
+  let offset = -100; // Starting X position of the first water sprite
+  for (let i = 0; i < 50; i++) {
+    add([sprite("water", { anim: "wave" }), pos(offset, 750), scale(4)]);
+    offset += 64;
+  }
+}
+
 const levelConf = {
   tileWidth: 64,
   tileHeight: 64,
@@ -296,86 +323,15 @@ const levelConf = {
       offscreen({ hide: true }),
       "purple",
     ],
-    "+": () => [
-      sprite("e2"),
-      scale(2),
-      area(),
-      anchor("bot"),
-      body(),
-      patrol(),
-      offscreen({ hide: true }),
-      "enemies",
-    ],
-    "&": () => [
-      sprite("e2"),
-      scale(2),
-      area(),
-      anchor("bot"),
-      body(),
-      patrol(),
-      offscreen({ hide: true }),
-      "enemies",
-    ],
-    "!": () => [
-      sprite("e3"),
-      scale(2),
-      area(),
-      anchor("bot"),
-      body(),
-      patrol(),
-      offscreen({ hide: true }),
-      "enemies",
-    ],
-    "(": () => [
-      sprite("e4"),
-      scale(2),
-      area(),
-      anchor("bot"),
-      body(),
-      patrol(),
-      offscreen({ hide: true }),
-      "enemies",
-    ],
-    ")": () => [
-      sprite("e5"),
-      scale(2),
-      area(),
-      anchor("bot"),
-      body(),
-      patrol(),
-      offscreen({ hide: true }),
-      "enemies",
-    ],
-    "{": () => [
-      sprite("e6"),
-      scale(2),
-      area(),
-      anchor("bot"),
-      body(),
-      patrol(),
-      offscreen({ hide: true }),
-      "enemies",
-    ],
-    "}": () => [
-      sprite("e7"),
-      scale(2),
-      area(),
-      anchor("bot"),
-      body(),
-      patrol(),
-      offscreen({ hide: true }),
-      "enemies",
-    ],
-    "|": () => [
-      sprite("e8"),
-      scale(2),
-      area(),
-      anchor("bot"),
-      body(),
-      patrol(),
-      offscreen({ hide: true }),
-      "enemies",
-    ],
+    // c: () => [
+    //   sprite("NC"),
+    //   scale(1.6),
+    //   area(),
+    //   body({ isStatic: true }),
+    //   anchor("bot"),
+    //   offscreen({ hide: true }),
+    //   "draggable",
+    // ],
   },
 };
 
@@ -396,11 +352,18 @@ scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
     anchor("bot"),
   ]);
 
-  // action() runs every frame
+  drawWaves();
+
+  const waterLevelY = 900; // Y position where the top of the water starts
+  const screenHeight = height(); // The height of the game screen
+  const cameraOffsetY = waterLevelY - screenHeight / 2;
+
+  camPos(vec2(width() / 2, cameraOffsetY));
+
+  // Then during the update, you might want to fix the camera on the x-axis only
   player.onUpdate(() => {
-    // center camera to player
-    camPos(player.pos);
-    // check fall death
+    // Fix the camera to the center of the screen on the x-axis only
+    camPos(vec2(player.pos.x, cameraOffsetY));
     if (player.pos.y >= FALL_DEATH) {
       go("lose");
     }
@@ -414,7 +377,7 @@ scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
 
   player.onPhysicsResolve(() => {
     // Set the viewport center to player.pos
-    camPos(player.pos);
+    // camPos(player.pos);
   });
 
   // if player onCollide with any obj with "danger" tag, lose
@@ -432,59 +395,6 @@ scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
       });
     } else {
       go("win");
-    }
-  });
-
-  player.onGround((l) => {
-    if (l.is("enemy")) {
-      player.jump(JUMP_FORCE * 1.5);
-      destroy(l);
-      addKaboom(player.pos);
-      play("powerup");
-    }
-  });
-
-  player.onCollide("enemy", (e, col) => {
-    // if it's not from the top, die
-    if (!col.isBottom()) {
-      go("lose");
-      play("hit");
-    }
-  });
-
-  const enemyOrder = ["e1", "e2", "e3", "e4", "e5", "e6", "e7", "e8"]; // etc...
-  let currentTargetIndex = 0;
-  let currentLevel = 2;
-
-  player.onCollide("enemies", (enemy) => {
-    console.log("Collided with enemy");
-    // Check if the current level has a special lose condition
-    if (LEVELS[currentLevel].enforceOrder) {
-      console.log("Enforce order is true");
-      if (
-        enemy.is(
-          LEVELS[currentLevel].enemyOrder[
-            LEVELS[currentLevel].currentTargetIndex
-          ]
-        )
-      ) {
-        console.log("Correct enemy defeated");
-        LEVELS[currentLevel].currentTargetIndex++;
-        destroy(enemy);
-        if (
-          LEVELS[currentLevel].currentTargetIndex >=
-          LEVELS[currentLevel].enemyOrder.length
-        ) {
-          console.log("All enemies defeated in order");
-          go("win");
-        }
-      } else {
-        console.log("Incorrect enemy - lose condition");
-        go("lose", { reason: "wrongOrder" });
-      }
-    } else {
-      console.log("Standard logic");
-      // Standard enemy collision logic
     }
   });
 
