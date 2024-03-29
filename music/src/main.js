@@ -32,6 +32,7 @@ loadSprite("pink", "./sprites/pink.png");
 loadSprite("green", "./sprites/green.png");
 loadSprite("teal", "./sprites/teal.png");
 loadSprite("NC", "./sprites/NC.png");
+loadSprite("ND", "./sprites/ND.png");
 loadSprite("water", "./sprites/Water.png", {
   sliceX: 8,
   sliceY: 1,
@@ -119,7 +120,7 @@ const LEVELS = [
     "                                            ",
     "           $$$$                       $      ",
     "       $$                             $      ",
-    "  $$    $$ $$$$                       $      ",
+    "  $$    $$ $$$$        C               $      ",
     "    $$           p b r n w p g t      $   ",
     " %   $$  $$                           $     ",
     "    =  ^^ >^^^               >        @     ",
@@ -137,8 +138,8 @@ const LEVELS = [
     " $$ $$  $$      $$       ",
     "                        $",
     "                     =  $",
-    "                     =   ",
-    "^                    =  @",
+    "         D           =   ",
+    "^                     =  @",
     "==========================",
     "==========================",
     "==========================",
@@ -323,21 +324,30 @@ const levelConf = {
       offscreen({ hide: true }),
       "purple",
     ],
-    // c: () => [
-    //   sprite("NC"),
-    //   scale(1.6),
-    //   area(),
-    //   body({ isStatic: true }),
-    //   anchor("bot"),
-    //   offscreen({ hide: true }),
-    //   "draggable",
-    // ],
+    C: () => [
+      sprite("NC"),
+      scale(1.6),
+      area(),
+      body({ isStatic: true }),
+      anchor("bot"),
+      offscreen({ hide: true }),
+      "collectable",
+    ],
+    D: () => [
+      sprite("ND"),
+      scale(1.6),
+      area(),
+      body({ isStatic: true }),
+      anchor("bot"),
+      offscreen({ hide: true }),
+      "collectable",
+    ],
   },
 };
 
 scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
   // add level to scene
-  const level = addLevel(LEVELS[levelId ?? 0], levelConf);
+  const level = addLevel(LEVELS[levelId ?? 1], levelConf);
 
   // define player object
   const player = add([
@@ -442,6 +452,32 @@ scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
     coinPitch += 100;
     coins += 1;
     coinsLabel.text = coins;
+  });
+
+  let collectables = 0;
+
+  player.onCollide("collectable", (c) => {
+    destroy(c);
+    collectables += 1;
+    console.log(collectables);
+    play("blip");
+  });
+
+  player.onGround((l) => {
+    if (l.is("enemy")) {
+      player.jump(JUMP_FORCE * 1.5);
+      destroy(l);
+      addKaboom(player.pos);
+      play("powerup");
+    }
+  });
+
+  player.onCollide("enemy", (e, col) => {
+    // if it's not from the top, die
+    if (!col.isBottom()) {
+      go("lose");
+      play("hit");
+    }
   });
 
   const coinsLabel = add([text(coins), pos(24, 24), fixed()]);
