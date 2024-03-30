@@ -136,64 +136,48 @@ const LEVELS = [
     "============================================",
   ],
   [
-    "       $$$$                                                        ",
-    "       ====       $$                                               ",
-    "  $$   $$$$  $$                                    C               ",
-    "%                     %                       =                    ",
-    " $$ $$  $$      $$                         =                       ",
-    "                                        =                         $",
-    "                                     =                            $",
-    "                                                                   ",
-    "^          > ^^^       >    >           ^^^^^          ^^^        @",
-    "===================================================================",
-    "===================================================================",
-    "===================================================================",
-    "===================================================================",
-    "===================================================================",
+    "       $$$$                                                  ",
+    "       ====       $$                                         ",
+    "  $$   $$$$  $$                               C             ",
+    "%                     %                       =   ",
+    " $$ $$  $$      $$                         =      ",
+    "                                        =        $",
+    "                                     =          $",
+    "                                                ",
+    "^          > ^^^       >    >     ^^^^^^^^^^^  @",
+    "============================================================",
+    "================================================= ==========",
+    "============================================================",
+    "============================================================",
+    "============================================================",
   ],
 
   [
-    "$   $   %   $   $   %   $  ",
-    "$   $   %   $   $   %   $  ",
-    "$   $       $   $       $  ",
-    "    %   ==    %    ==     %",
+    "$   $   %   $   $   %   $ ",
+    "$   $   %   $   $   %   $ ",
+    "$   $       $   $       $ ",
+    "    %   ==    %    ==     ",
     "==      ==   D   ==     ==",
     "    ==      ==      ==    ",
-    "==  @ ==  @ ==  @ ==  @ ==",
+    "==    ==    ==    ==  @ ==",
     "    ==      ==      ==    ",
     ">^^^>^^^>^^^>^^^>^^^>^^^>^@",
-    "=================================================================",
-    "=================================================================",
-    "=================================================================",
-    "=================================================================",
-    "=================================================================",
+    "===========================",
+    "===========================",
+    "===========================",
+    "===========================",
+    "===========================",
   ],
   [
     "                          ",
     "                                            ",
     "                                            ",
-    "           $$$$                       $      ",
-    "       $$                             $      ",
-    "  $$    $$ $$$$        E               $      ",
-    "    $$           p b r n w p g t      $   ",
-    " %   $$  $$                           $     ",
-    "    =  ^^ >^^^               >        @     ",
-    "============================================",
-    "============================================",
-    "============================================",
-    "============================================",
-    "============================================",
-  ],
-  [
-    "                          ",
-    "                                            ",
-    "                                            ",
-    "           $$$$                       $      ",
-    "       $$                             $      ",
-    "  $$    $$ $$$$        F               $      ",
-    "    $$           p b r n w p g t      $   ",
-    " %   $$  $$                           $     ",
-    "    =  ^^ >^^^               >        @     ",
+    "       $       $       $      $       $     ",
+    "       =       =       =      =       =     ",
+    "       =       =       =      =       =     ",
+    " %     =       =       =      =       =     ",
+    "       =       =       =      =    E  =     ",
+    "      >=^^^ >^^=^^^ >^^=^^ >^^=^^^ >^^=    @",
     "============================================",
     "============================================",
     "============================================",
@@ -201,15 +185,15 @@ const LEVELS = [
     "============================================",
   ],
   [
-    "                          ",
-    "                                            ",
-    "                                            ",
-    "           $$$$                       $      ",
-    "       $$                             $      ",
-    "  $$    $$ $$$$        G               $      ",
-    "    $$           p b r n w p g t      $   ",
-    " %   $$  $$                           $     ",
-    "    =  ^^ >^^^               >        @     ",
+    "                                           ",
+    "                                           ",
+    "                                           ",
+    "         ^          ^                     ",
+    "         =          =                      ",
+    "         =          =                      ",
+    "         =  >  F >  =                       ",
+    "       ================                     ",
+    "    >^^^^^^^^^^^^^^^^^^^^^   $$$$$$$$$@$$$$$",
     "============================================",
     "============================================",
     "============================================",
@@ -217,15 +201,15 @@ const LEVELS = [
     "============================================",
   ],
   [
-    "                          ",
+    "                      G                     ",
     "                                            ",
-    "                                            ",
-    "           $$$$                       $      ",
-    "       $$                             $      ",
-    "  $$    $$ $$$$        A               $      ",
-    "    $$           p b r n w p g t      $   ",
-    " %   $$  $$                           $     ",
-    "    =  ^^ >^^^               >        @     ",
+    "                    ^  ^                    ",
+    "                    =  =                  $ ",
+    "                    ^> ^                  $ ",
+    "                  =========               $ ",
+    "               ^    ^^^^^    ^^           $ ",
+    "             ===================          $ ",
+    "          ^^^^^^^^^^^^^^^^^^^^^^^^^^    ^^@ ",
     "============================================",
     "============================================",
     "============================================",
@@ -233,20 +217,36 @@ const LEVELS = [
     "============================================",
   ],
   [
-    "                          ",
+    "                                           ",
+    "                                           ",
+    "                                   =       ",
+    "                                      $    ",
+    "                            =    =    $    ",
+    "                         =    =       $    ",
+    "                       =              $    ",
+    " %                                    $    ",
+    "       ^^>^^^^^^^    ^^^^^^^^^^^^^^^^ @    ",
+    "==================  ========================",
+    "=================               A===========",
+    "============================================",
+    "============================================",
+    "============================================",
+  ],
+  [
     "                                            ",
     "                                            ",
-    "           $$$$                       $      ",
-    "       $$                             $      ",
-    "  $$    $$ $$$$        B               $      ",
-    "    $$           p b r n w p g t      $   ",
-    " %   $$  $$                           $     ",
-    "    =  ^^ >^^^               >        @     ",
-    "============================================",
-    "============================================",
-    "============================================",
-    "============================================",
-    "============================================",
+    "                                            ",
+    "                                           $",
+    "       $   $    $      $    $    $     $   $",
+    "       $   $    $      $    $    $     $   B",
+    "       $   $    $      $    $    $     $   $",
+    "       $   $    $      $    $    $     $   $",
+    "   ^^^^>^^^>^^^^>      >^^^^>^^^^>^^^^^>^^^@",
+    "=================      =====================",
+    "=================      =====================",
+    "=================      =====================",
+    "=================      =====================",
+    "=================      =====================",
   ],
 ];
 
@@ -475,184 +475,188 @@ const levelConf = {
   },
 };
 
-scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
-  // add level to scene
-  const level = addLevel(LEVELS[levelId ?? 1], levelConf);
+scene(
+  "game",
+  (
+    { levelId, coins, collectables } = { levelId: 0, coins: 0, collectables: 0 }
+  ) => {
+    // add level to scene
+    const level = addLevel(LEVELS[levelId ?? 1], levelConf);
 
-  // define player object
-  const player = add([
-    sprite("bean"),
-    pos(30, 0),
-    area(),
-    scale(0.5),
-    // makes it fall to gravity and jumpable
-    body(),
-    // the custom component we defined above
-    big(),
-    anchor("bot"),
-  ]);
+    // define player object
+    const player = add([
+      sprite("bean"),
+      pos(30, 0),
+      area(),
+      scale(0.5),
+      // makes it fall to gravity and jumpable
+      body(),
+      // the custom component we defined above
+      big(),
+      anchor("bot"),
+    ]);
 
-  drawWaves();
+    drawWaves();
 
-  const waterLevelY = 900; // Y position where the top of the water starts
-  const screenHeight = height(); // The height of the game screen
-  const cameraOffsetY = waterLevelY - screenHeight / 2;
+    const waterLevelY = 900; // Y position where the top of the water starts
+    const screenHeight = height(); // The height of the game screen
+    const cameraOffsetY = waterLevelY - screenHeight / 2;
 
-  camPos(vec2(width() / 2, cameraOffsetY));
+    camPos(vec2(width() / 2, cameraOffsetY));
 
-  // Then during the update, you might want to fix the camera on the x-axis only
-  player.onUpdate(() => {
-    // Fix the camera to the center of the screen on the x-axis only
-    camPos(vec2(player.pos.x, cameraOffsetY));
-    if (player.pos.y >= FALL_DEATH) {
-      go("lose");
-    }
-  });
-
-  player.onBeforePhysicsResolve((collision) => {
-    if (collision.target.is(["platform", "soft"]) && player.isJumping()) {
-      collision.preventResolution();
-    }
-  });
-
-  player.onPhysicsResolve(() => {
-    // Set the viewport center to player.pos
-    // camPos(player.pos);
-  });
-
-  // if player onCollide with any obj with "danger" tag, lose
-  player.onCollide("danger", () => {
-    go("lose");
-    play("hit");
-  });
-
-  player.onCollide("portal", () => {
-    play("portal");
-    if (levelId + 1 < LEVELS.length) {
-      go("game", {
-        levelId: levelId + 1,
-        coins: coins,
-      });
-    } else {
-      go("win");
-    }
-  });
-
-  let hasApple = false;
-
-  // grow an apple if player's head bumps into an obj with "prize" tag
-  player.onHeadbutt((obj) => {
-    if (obj.is("prize") && !hasApple) {
-      const apple = level.spawn("#", obj.tilePos.sub(0, 1));
-      apple.jump();
-      hasApple = true;
-      play("blip");
-    }
-  });
-
-  player.onHeadbutt((obj) => {
-    if (obj.is("purple")) {
-      // Check if the object collided with has the "purple" tag
-      play("blip"); // Play the headbutt sound specifically for the purple block
-    }
-  });
-
-  // player grows big onCollide with an "apple" obj
-  player.onCollide("apple", (a) => {
-    destroy(a);
-    // as we defined in the big() component
-    player.biggify(3);
-    hasApple = false;
-    play("powerup");
-  });
-
-  let coinPitch = 0;
-
-  onUpdate(() => {
-    if (coinPitch > 0) {
-      coinPitch = Math.max(0, coinPitch - dt() * 100);
-    }
-  });
-
-  player.onCollide("coin", (c) => {
-    destroy(c);
-    play("coin", {
-      detune: coinPitch,
+    // Then during the update, you might want to fix the camera on the x-axis only
+    player.onUpdate(() => {
+      // Fix the camera to the center of the screen on the x-axis only
+      camPos(vec2(player.pos.x, cameraOffsetY));
+      if (player.pos.y >= FALL_DEATH) {
+        go("lose");
+      }
     });
-    coinPitch += 100;
-    coins += 1;
-    coinsLabel.text = "coins: " + coins;
-  });
 
-  let collectables = 0;
+    player.onBeforePhysicsResolve((collision) => {
+      if (collision.target.is(["platform", "soft"]) && player.isJumping()) {
+        collision.preventResolution();
+      }
+    });
 
-  player.onCollide("collectable", (c) => {
-    destroy(c);
-    collectables += 1;
-    collectablesLabel.text = "collectables: " + collectables;
-    play("blip");
-  });
+    player.onPhysicsResolve(() => {
+      // Set the viewport center to player.pos
+      // camPos(player.pos);
+    });
 
-  player.onGround((l) => {
-    if (l.is("enemy")) {
-      player.jump(JUMP_FORCE * 1.5);
-      destroy(l);
-      addKaboom(player.pos);
-      play("powerup");
-    }
-  });
-
-  player.onCollide("enemy", (e, col) => {
-    // if it's not from the top, die
-    if (!col.isBottom()) {
+    // if player onCollide with any obj with "danger" tag, lose
+    player.onCollide("danger", () => {
       go("lose");
       play("hit");
-    }
-  });
+    });
 
-  const coinsLabel = add([text("coins: ", +coins), pos(24, 24), fixed()]);
-  const collectablesLabel = add([
-    text("collectables: ", +collectables),
-    pos(300, 24),
-    fixed(),
-  ]);
+    player.onCollide("portal", () => {
+      play("portal");
+      if (levelId + 1 < LEVELS.length) {
+        go("game", {
+          levelId: levelId + 1,
+          coins: coins,
+          collectables: collectables,
+        });
+      } else {
+        go("win");
+      }
+    });
 
-  function jump() {
-    // these 2 functions are provided by body() component
-    if (player.isGrounded()) {
-      player.jump(JUMP_FORCE);
+    let hasApple = false;
+
+    // grow an apple if player's head bumps into an obj with "prize" tag
+    player.onHeadbutt((obj) => {
+      if (obj.is("prize") && !hasApple) {
+        const apple = level.spawn("#", obj.tilePos.sub(0, 1));
+        apple.jump();
+        hasApple = true;
+        play("blip");
+      }
+    });
+
+    player.onHeadbutt((obj) => {
+      if (obj.is("purple")) {
+        // Check if the object collided with has the "purple" tag
+        play("blip"); // Play the headbutt sound specifically for the purple block
+      }
+    });
+
+    // player grows big onCollide with an "apple" obj
+    player.onCollide("apple", (a) => {
+      destroy(a);
+      // as we defined in the big() component
+      player.biggify(3);
+      hasApple = false;
+      play("powerup");
+    });
+
+    let coinPitch = 0;
+
+    onUpdate(() => {
+      if (coinPitch > 0) {
+        coinPitch = Math.max(0, coinPitch - dt() * 100);
+      }
+    });
+
+    player.onCollide("coin", (c) => {
+      destroy(c);
+      play("coin", {
+        detune: coinPitch,
+      });
+      coinPitch += 100;
+      coins += 1;
+      coinsLabel.text = "coins: " + coins;
+    });
+
+    player.onCollide("collectable", (c) => {
+      destroy(c);
+      collectables += 1;
+      collectablesLabel.text = "collectables: " + collectables;
+      play("blip");
+    });
+
+    player.onGround((l) => {
+      if (l.is("enemy")) {
+        player.jump(JUMP_FORCE * 1.5);
+        destroy(l);
+        addKaboom(player.pos);
+        play("powerup");
+      }
+    });
+
+    player.onCollide("enemy", (e, col) => {
+      // if it's not from the top, die
+      if (!col.isBottom()) {
+        go("lose");
+        play("hit");
+      }
+    });
+
+    const coinsLabel = add([text("coins: ", +coins), pos(24, 24), fixed()]);
+    const collectablesLabel = add([
+      text("collectables: ", +collectables),
+      pos(300, 24),
+      fixed(),
+    ]);
+
+    function jump() {
+      // these 2 functions are provided by body() component
+      if (player.isGrounded()) {
+        player.jump(JUMP_FORCE);
+      }
     }
+
+    // jump with space
+    onKeyPress("space", jump);
+
+    onKeyDown("left", () => {
+      player.move(-MOVE_SPEED, 0);
+    });
+
+    onKeyDown("right", () => {
+      player.move(MOVE_SPEED, 0);
+    });
+
+    onKeyPress("down", () => {
+      player.weight = 3;
+    });
+
+    onKeyRelease("down", () => {
+      player.weight = 1;
+    });
+
+    onGamepadButtonPress("south", jump);
+
+    onGamepadStick("left", (v) => {
+      player.move(v.x * MOVE_SPEED, 0);
+    });
+
+    onKeyPress("f", () => {
+      setFullscreen(!isFullscreen());
+    });
   }
-
-  // jump with space
-  onKeyPress("space", jump);
-
-  onKeyDown("left", () => {
-    player.move(-MOVE_SPEED, 0);
-  });
-
-  onKeyDown("right", () => {
-    player.move(MOVE_SPEED, 0);
-  });
-
-  onKeyPress("down", () => {
-    player.weight = 3;
-  });
-
-  onKeyRelease("down", () => {
-    player.weight = 1;
-  });
-
-  onGamepadButtonPress("south", jump);
-
-  onGamepadStick("left", (v) => {
-    player.move(v.x * MOVE_SPEED, 0);
-  });
-
-  onKeyPress("f", () => {
-    setFullscreen(!isFullscreen());
-  });
-});
+);
 
 scene("lose", () => {
   add([text("You Lose")]);
