@@ -55,6 +55,13 @@ loadSound("powerup", "./sprites/sounds/powerup.mp3");
 loadSound("blip", "./sprites/sounds/blip.mp3");
 loadSound("hit", "./sprites/sounds/hit.mp3");
 loadSound("portal", "./sprites/sounds/portal.mp3");
+loadSound("Do", "./sprites/sounds/C.mov");
+loadSound("Re", "./sprites/sounds/D.mov");
+loadSound("Mi", "./sprites/sounds/E.mov");
+loadSound("Fa", "./sprites/sounds/F.mov");
+loadSound("Sol", "./sprites/sounds/G.mov");
+loadSound("La", "./sprites/sounds/A.mov");
+loadSound("Si", "./sprites/sounds/B.mov");
 
 setGravity(3200);
 
@@ -139,27 +146,27 @@ const LEVELS = [
     "       $$$$                                                  ",
     "       ====       $$                                         ",
     "  $$   $$$$  $$                               C             ",
-    "%                     %                       =   ",
+    "==                     %                       =   ",
     " $$ $$  $$      $$                         =      ",
     "                                        =        $",
     "                                     =          $",
     "                                                ",
-    "^          > ^^^       >    >     ^^^^^^^^^^^  @",
+    "^          > ^^^            >     ^^^^^^^^^^^  @",
     "============================================================",
-    "================================================= ==========",
+    "============================================================",
     "============================================================",
     "============================================================",
     "============================================================",
   ],
 
   [
-    "$   $   %   $   $   %   $ ",
+    "$   $       $   $   %   $ ",
     "$   $   %   $   $   %   $ ",
     "$   $       $   $       $ ",
     "    %   ==    %    ==     ",
     "==      ==   D   ==     ==",
     "    ==      ==      ==    ",
-    "==    ==    ==    ==  @ ==",
+    "==    ==    ==    ==    ==",
     "    ==      ==      ==    ",
     ">^^^>^^^>^^^>^^^>^^^>^^^>^@",
     "===========================",
@@ -177,7 +184,7 @@ const LEVELS = [
     "       =       =       =      =       =     ",
     " %     =       =       =      =       =     ",
     "       =       =       =      =    E  =     ",
-    "      >=^^^ >^^=^^^ >^^=^^ >^^=^^^ >^^=    @",
+    "      >=    >  =    >  =   >  =    >  =    @",
     "============================================",
     "============================================",
     "============================================",
@@ -188,7 +195,7 @@ const LEVELS = [
     "                                           ",
     "                                           ",
     "                                           ",
-    "         ^          ^                     ",
+    "                                           ",
     "         =          =                      ",
     "         =          =                      ",
     "         =  >  F >  =                       ",
@@ -203,7 +210,7 @@ const LEVELS = [
   [
     "                      G                     ",
     "                                            ",
-    "                    ^  ^                    ",
+    "                                            ",
     "                    =  =                  $ ",
     "                    ^> ^                  $ ",
     "                  =========               $ ",
@@ -224,8 +231,8 @@ const LEVELS = [
     "                            =    =    $    ",
     "                         =    =       $    ",
     "                       =              $    ",
-    " %                                    $    ",
-    "       ^^>^^^^^^^    ^^^^^^^^^^^^^^^^ @    ",
+    " %                  =                 $    ",
+    "         >^^^^       ^^^^^^^^^^^^^^^^ @    ",
     "==================  ========================",
     "=================               A===========",
     "============================================",
@@ -241,7 +248,7 @@ const LEVELS = [
     "       $   $    $      $    $    $     $   B",
     "       $   $    $      $    $    $     $   $",
     "       $   $    $      $    $    $     $   $",
-    "   ^^^^>^^^>^^^^>      >^^^^>^^^^>^^^^^>^^^@",
+    "   ^^^^>^^^>^^^^         ^^^>^^^^>^^^^^>^^^@",
     "=================      =====================",
     "=================      =====================",
     "=================      =====================",
@@ -417,6 +424,7 @@ const levelConf = {
       anchor("bot"),
       offscreen({ hide: true }),
       "collectable",
+      { soundName: "Do" },
     ],
     D: () => [
       sprite("ND"),
@@ -426,6 +434,7 @@ const levelConf = {
       anchor("bot"),
       offscreen({ hide: true }),
       "collectable",
+      { soundName: "Re" },
     ],
     E: () => [
       sprite("NE"),
@@ -435,6 +444,7 @@ const levelConf = {
       anchor("bot"),
       offscreen({ hide: true }),
       "collectable",
+      { soundName: "Mi" },
     ],
     F: () => [
       sprite("NF"),
@@ -444,6 +454,7 @@ const levelConf = {
       anchor("bot"),
       offscreen({ hide: true }),
       "collectable",
+      { soundName: "Fa" },
     ],
     G: () => [
       sprite("NG"),
@@ -453,6 +464,7 @@ const levelConf = {
       anchor("bot"),
       offscreen({ hide: true }),
       "collectable",
+      { soundName: "Sol" },
     ],
     A: () => [
       sprite("NA"),
@@ -462,6 +474,7 @@ const levelConf = {
       anchor("bot"),
       offscreen({ hide: true }),
       "collectable",
+      { soundName: "La" },
     ],
     B: () => [
       sprite("NB"),
@@ -471,6 +484,7 @@ const levelConf = {
       anchor("bot"),
       offscreen({ hide: true }),
       "collectable",
+      { soundName: "Si" },
     ],
   },
 };
@@ -593,7 +607,12 @@ scene(
       destroy(c);
       collectables += 1;
       collectablesLabel.text = "collectables: " + collectables;
-      play("blip");
+
+      const soundToPlay = c.soundName || "defaultSound"; // "defaultSound" is a fallback
+      play(soundToPlay);
+
+      // Log for debugging
+      console.log("Played sound:", soundToPlay);
     });
 
     player.onGround((l) => {
@@ -604,6 +623,14 @@ scene(
         play("powerup");
       }
     });
+
+    // player.onCollide("ColC"),
+    //   (c) => {
+    //     play("C");
+    //   };
+    // // player.onCollide("ColD", (c) => {
+    // //   play("D");
+    // // });
 
     player.onCollide("enemy", (e, col) => {
       // if it's not from the top, die
