@@ -8,6 +8,8 @@ kaboom({
 loadSprite("bean", "./sprites/bean.png");
 loadSprite("bag", "./sprites/bag.png");
 loadSprite("ghosty", "./sprites/ghosty.png");
+loadSprite("tree", "./sprites/tree.png");
+loadSprite("tree2", "./sprites/tree2.png");
 loadSprite("e1", "./sprites/e1.png");
 loadSprite("e2", "./sprites/e2.png");
 loadSprite("e3", "./sprites/e3.png");
@@ -25,12 +27,12 @@ loadSprite("portal", "./sprites/portal.png");
 loadSprite("coin", "./sprites/coin.png");
 loadSprite("purple", "./sprites/purple.png");
 loadSprite("blue", "./sprites/blue.png");
-loadSprite("brown", "./sprites/brown.png");
-loadSprite("navy", "./sprites/navy.png");
-loadSprite("white", "./sprites/white.png");
-loadSprite("pink", "./sprites/pink.png");
-loadSprite("green", "./sprites/green.png");
-loadSprite("teal", "./sprites/teal.png");
+loadSprite("brown", "./sprites/purple.png");
+loadSprite("navy", "./sprites/purple.png");
+loadSprite("white", "./sprites/purple.png");
+loadSprite("pink", "./sprites/purple.png");
+loadSprite("green", "./sprites/purple.png");
+loadSprite("teal", "./sprites/purple.png");
 loadSprite("NC", "./sprites/NC.png");
 loadSprite("ND", "./sprites/ND.png");
 loadSprite("NE", "./sprites/NE.png");
@@ -38,6 +40,15 @@ loadSprite("NF", "./sprites/NF.png");
 loadSprite("NG", "./sprites/NG.png");
 loadSprite("NA", "./sprites/NA.png");
 loadSprite("NB", "./sprites/NB.png");
+loadSprite("NC2", "./sprites/NC2.png");
+loadSprite("C", "./sprites/NC.png");
+loadSprite("D", "./sprites/ND.png");
+loadSprite("E", "./sprites/NE.png");
+loadSprite("F", "./sprites/NF.png");
+loadSprite("G", "./sprites/NG.png");
+loadSprite("A", "./sprites/NA.png");
+loadSprite("B", "./sprites/NB.png");
+loadSprite("C2", "./sprites/NC2.png");
 loadSprite("water", "./sprites/Water.png", {
   sliceX: 8,
   sliceY: 1,
@@ -62,6 +73,7 @@ loadSound("Fa", "./sprites/sounds/F.mov");
 loadSound("Sol", "./sprites/sounds/G.mov");
 loadSound("La", "./sprites/sounds/A.mov");
 loadSound("Si", "./sprites/sounds/B.mov");
+loadSound("Do2", "./sprites/sounds/C2.mov");
 
 setGravity(3200);
 
@@ -132,10 +144,10 @@ const LEVELS = [
     "                                            ",
     "           $$$$                       $     ",
     "       $$                             $     ",
-    "  $$    $$ $$$$                       $     ",
-    "    $$           p b r n w p g t      $     ",
+    "  $$    $$ $$$$  0 1 2 3 4 5 6 7      $",
+    "    $$           p b r n w i g t      $     ",
     " %   $$  $$                           $     ",
-    "    =  ^^ >^^^               >        @     ",
+    "   + =  ^^ >^^^               >  -    @   + ",
     "============================================",
     "============================================",
     "============================================",
@@ -145,7 +157,7 @@ const LEVELS = [
   [
     "       $$$$                                                  ",
     "       ====       $$                                         ",
-    "  $$   $$$$  $$                               C             ",
+    "  $$   $$$$  $$                                C             ",
     "==                     %                       =   ",
     " $$ $$  $$      $$                         =      ",
     "                                        =        $",
@@ -183,8 +195,8 @@ const LEVELS = [
     "       =       =       =      =       =     ",
     "       =       =       =      =       =     ",
     " %     =       =       =      =       =     ",
-    "       =       =       =      =    E  =     ",
-    "      >=    >  =    >  =   >  =    >  =    @",
+    "       =       =       =      =       =     ",
+    "      >=    >  =    >  =   >  =   E  >=    @",
     "============================================",
     "============================================",
     "============================================",
@@ -209,7 +221,7 @@ const LEVELS = [
   ],
   [
     "                      G                     ",
-    "                                            ",
+    "                      =                     ",
     "                                            ",
     "                    =  =                  $ ",
     "                    ^> ^                  $ ",
@@ -243,12 +255,28 @@ const LEVELS = [
     "                                            ",
     "                                            ",
     "                                            ",
+    "                     B                     $ ",
+    "                     =                     $ ",
+    "                  =    =                   $ ",
+    "                =       =                   ",
+    "                                            ",
+    "         > ^^^^^^^^^^^^^^^^^^^^           @ ",
+    "============================================",
+    "============================================",
+    "============================================",
+    "============================================",
+    "============================================",
+  ],
+  [
+    "                                            ",
+    "                                            ",
+    "                                            ",
     "                                           $",
     "       $   $    $      $    $    $     $   $",
-    "       $   $    $      $    $    $     $   B",
+    "       $   $    $      $    $    $     $   c",
+    "       $   $    $      $    $    $     $ = $",
     "       $   $    $      $    $    $     $   $",
-    "       $   $    $      $    $    $     $   $",
-    "   ^^^^>^^^>^^^^         ^^^>^^^^>^^^^^>^^^@",
+    "    ^^ >^^ >^^^          ^^^>^^^ > ^^^ >^^ @",
     "=================      =====================",
     "=================      =====================",
     "=================      =====================",
@@ -278,20 +306,6 @@ const levelConf = {
       anchor("bot"),
       offscreen({ hide: true }),
       "platform",
-    ],
-    "-": () => [
-      sprite("steel"),
-      area(),
-      body({ isStatic: true }),
-      offscreen({ hide: true }),
-      anchor("bot"),
-    ],
-    0: () => [
-      sprite("bag"),
-      area(),
-      body({ isStatic: true }),
-      offscreen({ hide: true }),
-      anchor("bot"),
     ],
     $: () => [
       sprite("coin"),
@@ -346,75 +360,83 @@ const levelConf = {
     ],
     p: () => [
       sprite("purple"),
-      scale(1.6),
+      scale(0.5),
       area(),
       body({ isStatic: true }),
       anchor("bot"),
       offscreen({ hide: true }),
       "purple",
+      { soundName: "Do" },
     ],
     b: () => [
       sprite("blue"),
-      scale(1.6),
+      scale(1.5),
       area(),
       body({ isStatic: true }),
       anchor("bot"),
       offscreen({ hide: true }),
       "purple",
+      { soundName: "Re" },
     ],
     r: () => [
       sprite("brown"),
-      scale(1.6),
+      scale(1.5),
       area(),
       body({ isStatic: true }),
       anchor("bot"),
       offscreen({ hide: true }),
       "purple",
+      { soundName: "Mi" },
     ],
     n: () => [
       sprite("navy"),
-      scale(1.6),
+      scale(1.5),
       area(),
       body({ isStatic: true }),
       anchor("bot"),
       offscreen({ hide: true }),
       "purple",
+      { soundName: "Fa" },
     ],
     w: () => [
       sprite("white"),
-      scale(1.6),
+      scale(0.5),
       area(),
       body({ isStatic: true }),
       anchor("bot"),
       offscreen({ hide: true }),
       "purple",
+      { soundName: "Sol" },
     ],
     i: () => [
       sprite("pink"),
-      scale(1.6),
+      scale(0.5),
       area(),
       body({ isStatic: true }),
       anchor("bot"),
       offscreen({ hide: true }),
       "purple",
+      { soundName: "La" },
     ],
     g: () => [
       sprite("green"),
-      scale(1.6),
+      scale(0.5),
       area(),
       body({ isStatic: true }),
       anchor("bot"),
       offscreen({ hide: true }),
       "purple",
+      { soundName: "Si" },
     ],
     t: () => [
       sprite("teal"),
-      scale(1.6),
+      scale(0.5),
       area(),
       body({ isStatic: true }),
       anchor("bot"),
       offscreen({ hide: true }),
       "purple",
+      { soundName: "Do2" },
     ],
     C: () => [
       sprite("NC"),
@@ -485,6 +507,88 @@ const levelConf = {
       offscreen({ hide: true }),
       "collectable",
       { soundName: "Si" },
+    ],
+    c: () => [
+      sprite("NC2"),
+      scale(1.6),
+      area(),
+      body({ isStatic: true }),
+      anchor("bot"),
+      offscreen({ hide: true }),
+      "collectable",
+      { soundName: "Do2" },
+    ],
+    "+": () => [
+      sprite("tree"),
+      scale(5.0),
+      area(),
+      anchor("bot"),
+      offscreen({ hide: true }),
+      "soft",
+    ],
+    "-": () => [
+      sprite("tree2"),
+      scale(5.0),
+      area(),
+      anchor("bot"),
+      offscreen({ hide: true }),
+      "soft",
+    ],
+    0: () => [
+      sprite("C"),
+      scale(1.6),
+      area(),
+      anchor("bot"),
+      offscreen({ hide: true }),
+    ],
+    1: () => [
+      sprite("D"),
+      scale(1.6),
+      area(),
+      anchor("bot"),
+      offscreen({ hide: true }),
+    ],
+    2: () => [
+      sprite("E"),
+      scale(1.6),
+      area(),
+      anchor("bot"),
+      offscreen({ hide: true }),
+    ],
+    3: () => [
+      sprite("F"),
+      scale(1.6),
+      area(),
+      anchor("bot"),
+      offscreen({ hide: true }),
+    ],
+    4: () => [
+      sprite("G"),
+      scale(1.6),
+      area(),
+      anchor("bot"),
+      offscreen({ hide: true }),
+    ],
+    5: () => [
+      sprite("A"),
+      scale(1.6),
+      area(),
+      anchor("bot"),
+      offscreen({ hide: true }),
+    ],
+    6: () => [
+      sprite("B"),
+      scale(1.6),
+      area(),
+      anchor("bot"),
+      offscreen({ hide: true }),
+    ],
+    7: () => [
+      sprite("C2"),
+      scale(1.6),
+      area(),
+      anchor("bot"),
+      offscreen({ hide: true }),
     ],
   },
 };
@@ -569,11 +673,13 @@ scene(
       }
     });
 
-    player.onHeadbutt((obj) => {
-      if (obj.is("purple")) {
-        // Check if the object collided with has the "purple" tag
-        play("blip"); // Play the headbutt sound specifically for the purple block
-      }
+    player.onCollide("purple", (c) => {
+      // Check if the object collided with has the "purple" tag
+      const soundToPlay = c.soundName || "defaultSound"; // "defaultSound" is a fallback
+      play(soundToPlay);
+
+      // Log for debugging
+      console.log("Played sound:", soundToPlay); // Play the headbutt sound specifically for the purple block
     });
 
     // player grows big onCollide with an "apple" obj
@@ -623,14 +729,6 @@ scene(
         play("powerup");
       }
     });
-
-    // player.onCollide("ColC"),
-    //   (c) => {
-    //     play("C");
-    //   };
-    // // player.onCollide("ColD", (c) => {
-    // //   play("D");
-    // // });
 
     player.onCollide("enemy", (e, col) => {
       // if it's not from the top, die
