@@ -27,11 +27,11 @@ loadSprite("portal", "./sprites/portal.png");
 loadSprite("coin", "./sprites/coin.png");
 loadSprite("purple", "./sprites/purple.png");
 loadSprite("blue", "./sprites/blue.png");
-loadSprite("brown", "./sprites/purple.png");
-loadSprite("navy", "./sprites/purple.png");
-loadSprite("white", "./sprites/purple.png");
-loadSprite("pink", "./sprites/purple.png");
-loadSprite("green", "./sprites/purple.png");
+loadSprite("brown", "./sprites/brown.png");
+loadSprite("navy", "./sprites/navy.png");
+loadSprite("white", "./sprites/white.png");
+loadSprite("pink", "./sprites/pink.png");
+loadSprite("green", "./sprites/green.png");
 loadSprite("teal", "./sprites/purple.png");
 loadSprite("NC", "./sprites/NC.png");
 loadSprite("ND", "./sprites/ND.png");
@@ -49,6 +49,8 @@ loadSprite("G", "./sprites/NG.png");
 loadSprite("A", "./sprites/NA.png");
 loadSprite("B", "./sprites/NB.png");
 loadSprite("C2", "./sprites/NC2.png");
+loadSprite("cactus", "./sprites/cactus.png");
+loadSprite("smallc", "./sprites/smallc.png");
 loadSprite("water", "./sprites/Water.png", {
   sliceX: 8,
   sliceY: 1,
@@ -163,7 +165,7 @@ const LEVELS = [
     "                                        =        $",
     "                                     =          $",
     "                                                ",
-    "^          > ^^^            >     ^^^^^^^^^^^  @",
+    "^   ;      > ^^^     ;       >     ^^^^^^^^^^^  @",
     "============================================================",
     "============================================================",
     "============================================================",
@@ -228,7 +230,7 @@ const LEVELS = [
     "                  =========               $ ",
     "               ^    ^^^^^    ^^           $ ",
     "             ===================          $ ",
-    "          ^^^^^^^^^^^^^^^^^^^^^^^^^^    ^^@ ",
+    "   +      ^^^^^^^^^^^^^^^^^^^^^^^^^^    ^^@ ",
     "============================================",
     "============================================",
     "============================================",
@@ -244,7 +246,7 @@ const LEVELS = [
     "                         =    =       $    ",
     "                       =              $    ",
     " %                  =                 $    ",
-    "         >^^^^       ^^^^^^^^^^^^^^^^ @    ",
+    "    ;    >^^^^       ^^^^^^^^^^^^^^^^ @    ",
     "==================  ========================",
     "=================               A===========",
     "============================================",
@@ -260,7 +262,7 @@ const LEVELS = [
     "                  =    =                   $ ",
     "                =       =                   ",
     "                                            ",
-    "         > ^^^^^^^^^^^^^^^^^^^^           @ ",
+    "   ;     > ^^^^^^^^^^^^^^^^^^      .      @ ",
     "============================================",
     "============================================",
     "============================================",
@@ -287,8 +289,8 @@ const LEVELS = [
 
 function drawWaves() {
   console.log("Drawing waves");
-  let offset = -100; // Starting X position of the first water sprite
-  for (let i = 0; i < 50; i++) {
+  let offset = -1000; // Starting X position of the first water sprite
+  for (let i = 0; i < 90; i++) {
     add([sprite("water", { anim: "wave" }), pos(offset, 750), scale(4)]);
     offset += 64;
   }
@@ -400,7 +402,7 @@ const levelConf = {
     ],
     w: () => [
       sprite("white"),
-      scale(0.5),
+      scale(1.5),
       area(),
       body({ isStatic: true }),
       anchor("bot"),
@@ -410,7 +412,7 @@ const levelConf = {
     ],
     i: () => [
       sprite("pink"),
-      scale(0.5),
+      scale(1.5),
       area(),
       body({ isStatic: true }),
       anchor("bot"),
@@ -420,7 +422,7 @@ const levelConf = {
     ],
     g: () => [
       sprite("green"),
-      scale(0.5),
+      scale(1.5),
       area(),
       body({ isStatic: true }),
       anchor("bot"),
@@ -585,6 +587,20 @@ const levelConf = {
     ],
     7: () => [
       sprite("C2"),
+      scale(1.6),
+      area(),
+      anchor("bot"),
+      offscreen({ hide: true }),
+    ],
+    ";": () => [
+      sprite("cactus"),
+      scale(5.0),
+      area(),
+      anchor("bot"),
+      offscreen({ hide: true }),
+    ],
+    ".": () => [
+      sprite("smallc"),
       scale(1.6),
       area(),
       anchor("bot"),
