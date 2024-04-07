@@ -68,14 +68,14 @@ loadSound("powerup", "./sprites/sounds/powerup.mp3");
 loadSound("blip", "./sprites/sounds/blip.mp3");
 loadSound("hit", "./sprites/sounds/hit.mp3");
 loadSound("portal", "./sprites/sounds/portal.mp3");
-loadSound("Do", "./sprites/sounds/C.mov");
-loadSound("Re", "./sprites/sounds/D.mov");
-loadSound("Mi", "./sprites/sounds/E.mov");
-loadSound("Fa", "./sprites/sounds/F.mov");
-loadSound("Sol", "./sprites/sounds/G.mov");
-loadSound("La", "./sprites/sounds/A.mov");
-loadSound("Si", "./sprites/sounds/B.mov");
-loadSound("Do2", "./sprites/sounds/C2.mov");
+loadSound("Do", "./sprites/sounds/C.mp3");
+loadSound("Re", "./sprites/sounds/D.mp3");
+loadSound("Mi", "./sprites/sounds/E.mp3");
+loadSound("Fa", "./sprites/sounds/F.mp3");
+loadSound("Sol", "./sprites/sounds/G.mp3");
+loadSound("La", "./sprites/sounds/A.mp3");
+loadSound("Si", "./sprites/sounds/B.mp3");
+loadSound("Do2", "./sprites/sounds/C2.mp3");
 
 setGravity(3200);
 
@@ -278,7 +278,11 @@ const LEVELS = [
     "       $   $    $      $    $    $     $   c",
     "       $   $    $      $    $    $     $ = $",
     "       $   $    $      $    $    $     $   $",
+<<<<<<< HEAD
     "    ^  >^^ > ^          ^^ >^   > ^   >^^ @",
+=======
+    "    ^  >^  >^^            ^^>^  > ^    >^^ @",
+>>>>>>> 23638293384a14de848c9e4407935075500e6baa
     "=================      =====================",
     "=================      =====================",
     "=================      =====================",
@@ -601,7 +605,7 @@ const levelConf = {
     ],
     ".": () => [
       sprite("smallc"),
-      scale(1.6),
+      scale(4.0),
       area(),
       anchor("bot"),
       offscreen({ hide: true }),
