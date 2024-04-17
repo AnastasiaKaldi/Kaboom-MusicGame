@@ -656,14 +656,18 @@ scene(
 
     player.onCollide("portal", () => {
       play("portal");
-      if (levelId + 1 < LEVELS.length) {
-        go("game", {
-          levelId: levelId + 1,
-          coins: coins,
-          collectables: collectables,
-        });
+      if (levelId == collectables) {
+        if (levelId + 1 < LEVELS.length) {
+          go("game", {
+            levelId: levelId + 1,
+            coins: coins,
+            collectables: collectables,
+          });
+        } else {
+          go("win");
+        }
       } else {
-        go("win");
+        go("lose");
       }
     });
 
