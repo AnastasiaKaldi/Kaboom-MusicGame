@@ -19,7 +19,7 @@ loadSprite("e6", "./sprites/e6.png");
 loadSprite("e7", "./sprites/e7.png");
 loadSprite("e8", "./sprites/e8.png");
 loadSprite("spike", "./sprites/spike.png");
-loadSprite("grass", "./sprites/grass.png");
+loadSprite("sand", "./sprites/sand.png");
 loadSprite("steel", "./sprites/steel.png");
 loadSprite("prize", "./sprites/jumpy.png");
 loadSprite("apple", "./sprites/apple.png");
@@ -182,7 +182,6 @@ const LEVELS = [
     "    ==      ==      ==    ",
     "==    ==    ==    ==    ==",
     "    ==      ==      ==    ",
-    ">^^^^>^^^^^>^^^^^^^>>^^^ @",
     "    ==      ==            ",
     "==    ==          ==    ==",
     "            ==      ==    ",
@@ -282,8 +281,7 @@ const LEVELS = [
     "       $   $    $      $    $    $     $   c",
     "       $   $    $      $    $    $     $ = $",
     "       $   $    $      $    $    $     $   $",
-    "    ^  > ^^>^^^          ^^>^^^>^^>>       @",
-    "    ^  >^^ > ^          ^^ >^   > ^   >^^  @",
+    ,
     "    ^  >^  >^^            ^^>^  > ^    >^^ @",
     "=================      =====================",
     "=================      =====================",
@@ -295,7 +293,7 @@ const LEVELS = [
 
 function drawWaves() {
   console.log("Drawing waves");
-  let offset = -1000; // Starting X position of the first water sprite
+  let offset = -2000; // Starting X position of the first water sprite
   for (let i = 0; i < 90; i++) {
     add([sprite("water", { anim: "wave" }), pos(offset, 750), scale(4)]);
     offset += 64;
@@ -307,7 +305,7 @@ const levelConf = {
   tileHeight: 64,
   tiles: {
     "=": () => [
-      sprite("grass"),
+      sprite("sand"),
       scale(1.6),
       area(),
       body({ isStatic: true }),
@@ -672,14 +670,18 @@ scene(
 
     player.onCollide("portal", () => {
       play("portal");
-      if (levelId + 1 < LEVELS.length) {
-        go("game", {
-          levelId: levelId + 1,
-          coins: coins,
-          collectables: collectables,
-        });
+      if (levelId == collectables) {
+        if (levelId + 1 < LEVELS.length) {
+          go("game", {
+            levelId: levelId + 1,
+            coins: coins,
+            collectables: collectables,
+          });
+        } else {
+          go("win");
+        }
       } else {
-        go("win");
+        go("lose");
       }
     });
 
