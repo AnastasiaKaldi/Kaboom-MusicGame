@@ -1,7 +1,7 @@
 {
 	"name": "mygame",
 	"scripts": {
-		"build": "music/node_modules/.bin/esbuild --bundle src/main.js --outfile=www/main.js --minify",
+		"build": "esbuild --bundle src/main.js --outfile=www/main.js --minify",
 		"dev": "esbuild --bundle src/main.js --outfile=www/main.js --servedir=www",
 		"bundle": "npm run build && mkdir -p dist && zip -r dist/game.zip www -x \"**/.DS_Store\""
 	},
@@ -9,6 +9,6 @@
 		"kaboom": "^3000.1.8"
 	},
 	"devDependencies": {
-		"esbuild": "^0.19.4"
+		"esbuild": "^0.19.12"
 	}
 }
