@@ -308,6 +308,7 @@ const levelConf = {
     $: () => [
       sprite("coin"),
       area(),
+      scale(0.7),
       pos(0, -9),
       anchor("bot"),
       offscreen({ hide: true }),
