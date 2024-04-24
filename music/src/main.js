@@ -11,6 +11,8 @@ loadSprite("tree", "./sprites/tree.png");
 loadSprite("tree2", "./sprites/tree2.png");
 loadSprite("spike", "./sprites/spike.png");
 loadSprite("sand", "./sprites/sand.png");
+loadSprite("steel", "./sprites/steel.png");
+loadSprite("sand", "./sprites/sand.png");
 loadSprite("prize", "./sprites/jumpy.png");
 loadSprite("apple", "./sprites/apple.png");
 loadSprite("portal", "./sprites/portal.png");
@@ -167,6 +169,11 @@ const LEVELS = [
     "$   $       $   $       $ ",
     "$   $       $   $       $ ",
     "$   $       $   $       $ ",
+    "    %   ==    %    ==     ",
+    "==      ==   D   ==     ==",
+    "    ==      ==      ==    ",
+    "==    ==    ==    ==    ==",
+    "    ==      ==      ==    ",
     "    %    =         =      ",
     "==       =   D   ==     ==",
     "    ==      ==            ",
@@ -302,6 +309,7 @@ const levelConf = {
     $: () => [
       sprite("coin"),
       area(),
+      scale(0.7),
       pos(0, -9),
       anchor("bot"),
       offscreen({ hide: true }),
