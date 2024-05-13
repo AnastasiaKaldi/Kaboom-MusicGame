@@ -4,7 +4,7 @@ kaboom({
   background: [101, 103, 255],
 });
 
-// load assets
+// loading assets
 loadSprite("girl", "./sprites/girl.png");
 loadSprite("ghosty", "./sprites/ghosty.png");
 loadSprite("tree", "./sprites/tree.png");
@@ -125,7 +125,7 @@ function big() {
   };
 }
 
-// define some constants
+// defining constants
 const JUMP_FORCE = 1320;
 const MOVE_SPEED = 480;
 const FALL_DEATH = 2000;
@@ -611,10 +611,10 @@ scene(
   (
     { levelId, coins, collectables } = { levelId: 0, coins: 0, collectables: 0 }
   ) => {
-    // add level to scene
+    // adding level to scene
     const level = addLevel(LEVELS[levelId ?? 1], levelConf);
 
-    // define player object
+    // defining player object
     const player = add([
       sprite("girl"),
       pos(30, 0),
@@ -622,7 +622,7 @@ scene(
       scale(0.5),
       // makes it fall to gravity and jumpable
       body(),
-      // the custom component we defined above
+      // the custom component defined above
       big(),
       anchor("bot"),
     ]);
@@ -635,9 +635,7 @@ scene(
 
     camPos(vec2(width() / 2, cameraOffsetY));
 
-    // Then during the update, you might want to fix the camera on the x-axis only
     player.onUpdate(() => {
-      // Fix the camera to the center of the screen on the x-axis only
       camPos(vec2(player.pos.x, cameraOffsetY));
       if (player.pos.y >= FALL_DEATH) {
         go("lose");
@@ -650,10 +648,7 @@ scene(
       }
     });
 
-    player.onPhysicsResolve(() => {
-      // Set the viewport center to player.pos
-      // camPos(player.pos);
-    });
+    player.onPhysicsResolve(() => {});
 
     // if player onCollide with any obj with "danger" tag, lose
     player.onCollide("danger", () => {
@@ -702,7 +697,7 @@ scene(
     // player grows big onCollide with an "apple" obj
     player.onCollide("apple", (a) => {
       destroy(a);
-      // as we defined in the big() component
+      // as defined in the big() component
       player.biggify(3);
       hasApple = false;
       play("powerup");
