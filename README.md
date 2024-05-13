@@ -1,6 +1,6 @@
 # Project Musa
 
-Porject Musa- Game A, is one of the games hosted on thr Website. It is a Kaboom jump-run-Jump educational music game, made to teach children aged 10 to 15 years old, the musical notes. In the game, a real piano was recorded 
+Porject Musa- Game A, is one of the games hosted on the Website. It is a Kaboom jump-run-Jump educational music game, made to teach children aged 10 to 15 years old, the musical notes. In the game, a real piano was recorded 
 to aquire the sounds of the piano notes. This game meant to be completely identical to another project one mine "Kaboom-MusicGame2", for the purpose of the experiment. Their only difference is how the piano notes were recorded. 
 
 ## Installation
