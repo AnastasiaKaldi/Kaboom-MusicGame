@@ -88,7 +88,7 @@ function patrol(speed = 60, dir = 1) {
   };
 }
 
-// custom component that makes stuff grow bigger
+// custom component that makes stuff grow big
 function big() {
   let timer = 0;
   let isBig = false;
@@ -758,7 +758,6 @@ scene(
     ]);
 
     function jump() {
-      // these 2 functions are provided by body() component
       if (player.isGrounded()) {
         player.jump(JUMP_FORCE);
       }
